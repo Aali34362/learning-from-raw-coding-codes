@@ -1,6 +1,8 @@
 Semaphore is solving the synchronization between threads problem.
 its like a gate for process to pass through.
 
+Semaphore semaphore = new(1, 20);
+Semaphore is used for backwards compatibility 
 
 A semaphore is a synchronization mechanism used in programming 
 to manage concurrent access to shared resources by multiple threads or processes. 
@@ -30,7 +32,7 @@ Common Operations:
 Usage Scenario:
 Semaphores are particularly useful in scenarios where you need to control access to limited resources or coordinate the execution order of threads. 
 For instance, they can be used in a producer-consumer problem to manage the buffer's access or in a database connection pool to limit the number of active connections.
-
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 SemaphoreSlim:
 SemaphoreSlim is a lightweight and more efficient implementation of the semaphore in .NET,
 designed for scenarios where you don't need the full overhead of a traditional semaphore. 
