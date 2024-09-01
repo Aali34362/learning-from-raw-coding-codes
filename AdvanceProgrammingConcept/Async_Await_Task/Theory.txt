@@ -1,0 +1,42 @@
+Task :
+	Its a bridge between state machine that async creates.
+
+await :
+	Its a checkpoints within your state machine
+
+async :
+	async creates state machine
+
+Task :
+In C#, a task represents an asynchronous operation. 
+It's a way to encapsulate a unit of work that runs independently and can potentially be executed in parallel with other tasks. 
+When you use a Task, it allows your application to continue executing while the task runs in the background.
+	Task myTask = Task.Run(() => DoWork());
+	Task: An object that represents an asynchronous operation.
+	Task<T>: A task that returns a result of type T when it completes.
+
+await :
+The await keyword is used to pause the execution of an asynchronous method until the awaited Task is completed. 
+When await is used, it marks a checkpoint in your method where the control can return to the caller until the Task finishes. 
+It does not block the calling thread, allowing other operations to run concurrently.
+	await myTask;
+	await: Pauses the method execution until the awaited task is completed, allowing for efficient and non-blocking code execution.
+
+async :
+The async keyword is used to declare a method as asynchronous. When you define a method with async, it allows the use of await inside that method. 
+An async method typically returns a Task or Task<T>, making it possible to perform long-running operations without blocking the main thread.
+	public async Task MyMethodAsync()
+	{
+	    await myTask;
+	}
+	async: Declares a method as asynchronous, enabling the use of await within the method and allowing the method to return a Task.
+
+Relationship Between Task, await, and async
+
+    Task: Represents the asynchronous operation that can be awaited.
+    async: Used to mark a method as asynchronous, enabling await to be used within it.
+    await: Pauses the method execution at a checkpoint, waiting for the Task to complete without blocking the thread.
+
+When combined, async and await provide a powerful and easy-to-use framework for handling asynchronous operations in C#.
+async creates a state machine under the hood, and await marks checkpoints within that state machine, 
+making asynchronous programming more straightforward and maintainable.
