@@ -1,0 +1,29 @@
+Atomicity:
+    Definition: 
+    The transaction must be all-or-nothing. 
+    If any part of the transaction fails, the entire transaction is rolled back, and no changes are made.
+    In the Code: 
+    The TransactionScope ensures that both the withdrawal and deposit operations either both succeed or both fail. 
+    If an exception occurs (e.g., transfer limit exceeded), the entire transaction is rolled back.
+
+Consistency:
+    Definition: 
+    The transaction must leave the system in a consistent state, adhering to all predefined rules (e.g., no overdrafts allowed).
+    In the Code: 
+    The transaction enforces that no account can have a negative balance, and the total balance across 
+    both accounts remains unchanged before and after the transaction, ensuring consistency.
+
+Isolation:
+    Definition: 
+    The transaction must operate independently of other transactions. 
+    Intermediate states must not be visible to other transactions.
+    In the Code: 
+    The TransactionScope provides isolation, so no other operation can see the intermediate state 
+    where the money is withdrawn but not yet deposited. The transaction's effects are only visible once it’s completed.
+
+Durability:
+    Definition: 
+    Once the transaction is committed, the changes must persist, even in the case of a system failure.
+    In the Code: 
+    The TransactionScope.Complete() method commits the transaction, ensuring that the changes are durable. 
+    If the program crashes afterward, the committed changes will still be reflected in the account balances.
