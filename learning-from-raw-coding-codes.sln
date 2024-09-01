@@ -5,6 +5,8 @@ VisualStudioVersion = 17.11.35125.118
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Semaphore", "Semaphore\Semaphore\Semaphore.csproj", "{BAC092B5-5CA1-492C-8CF3-93C4BEA43977}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AdvanceProgrammingConcept", "AdvanceProgrammingConcept", "{B8816315-7735-4061-A064-8778427EB433}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,6 +20,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BAC092B5-5CA1-492C-8CF3-93C4BEA43977} = {B8816315-7735-4061-A064-8778427EB433}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {47F9E876-1C24-4093-9D33-B561A3731B32}
