@@ -40,3 +40,69 @@ Relationship Between Task, await, and async
 When combined, async and await provide a powerful and easy-to-use framework for handling asynchronous operations in C#.
 async creates a state machine under the hood, and await marks checkpoints within that state machine, 
 making asynchronous programming more straightforward and maintainable.
+
+
+Threads :
+
+ThreadPool :
+
+
+State Machine:
+A state machine behind a running program refers to an abstract model that represents the execution flow of the program 
+as a series of states and transitions between those states. 
+This concept is particularly relevant in scenarios like asynchronous programming, 
+where the flow of execution is not linear but rather dependent on various events, 
+such as the completion of tasks, user inputs, or other triggers.
+
+Understanding the State Machine in a Running Program
+1. States
+    State represents a specific condition or situation in which a program (or a part of a program) can be. 
+	Each state reflects what the program is currently doing or waiting for.
+	For instance, a state can represent that the program is waiting for user input, processing data, or waiting for an I/O operation to complete.
+
+2. Transitions
+    Transitions define how the program moves from one state to another. 
+	Transitions occur due to certain triggers or events, such as the completion of a task, the arrival of data, or the occurrence of an error. 
+	The transition defines what action should be taken and which state to move to next.
+
+3. State Machine in Asynchronous Programming
+    In the context of asynchronous programming in C#, when you define a method as async and use await, 
+	the compiler transforms the method into a state machine.
+    
+	State Machine in async/await: 
+	The state machine handles the flow of the asynchronous operation. 
+	It tracks where the method should resume after an await, what state the method is in, and manages the continuation when the awaited task completes.
+    
+	State Representation: 
+	Each await point in an asynchronous method corresponds to a potential state in the state machine.
+    
+	Execution Flow: 
+	When a method awaits an asynchronous operation, the state machine saves the 
+	current state and the position in the code, then suspends execution. 
+	Once the awaited task is complete, the state machine resumes execution from the saved state.
+
+Consider an asynchronous method that reads data from a file and processes it:
+public async Task ProcessFileAsync()
+{
+    var fileContent = await ReadFileAsync("example.txt"); // State 1
+    var processedData = ProcessData(fileContent);          // State 2
+    await SaveDataAsync(processedData);                   // State 3
+}
+State 1: The method starts and begins reading the file. When await is hit, the state machine records this point and suspends execution.
+Transition: Once ReadFileAsync completes, the state machine resumes the method from where it left off.
+State 2: The method processes the data after file reading is completed.
+State 3: The method awaits saving the processed data. Again, the state machine records the point and suspends execution.
+Why Use State Machines?
+
+State machines are useful in managing complex flows where the program's behavior
+changes based on different conditions or inputs. 
+By breaking down the execution flow into states and transitions, state machines make it easier to understand, maintain, and extend the program.
+
+Key Points:
+    State Machines model the execution flow of a program.
+    In async/await, the compiler generates a state machine to handle asynchronous execution.
+    States represent different points in the program's execution, especially around await calls.
+    Transitions occur based on events like task completions, guiding the program from one state to the next.
+
+This model provides a systematic way to handle the intricacies of asynchronous programming, 
+ensuring that the program remains responsive and efficient while waiting for various operations to complete.

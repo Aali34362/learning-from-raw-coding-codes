@@ -30,7 +30,6 @@ public static class TeaProgram
 
         return tea;
     }
-
     private async static Task<string> BoilWaterWithOtherProcessAsync()
     {
         "Start the kettle".Dump();
