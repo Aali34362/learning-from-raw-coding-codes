@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Dumpify;
+using Microsoft.EntityFrameworkCore;
 
 namespace HowToUseChannels.Services;
 
@@ -39,7 +40,7 @@ public class Notifications(Database database, IHttpClientFactory httpClientFacto
                 user!.Message = response;
                 await database.SaveChangesAsync();
             }
-            catch (Exception ex) { var a = ex; }
+            catch (Exception ex) { ex.Dump(); }
         });
         return true;
     }
