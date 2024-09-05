@@ -4,13 +4,20 @@ namespace Async_Await_Task;
 
 public static class DontBlockTheThread
 {
-    public static async Task<ActionResult> Index()
+    public static IActionResult Index()
     {
-        var a = await InputOutputN();
-        return View(a);
+        var task = InputOutputN();
+        //Bad
+        var a = task.Result;
+        //Bad
+        task.Wait();
+        //Bad
+        task.GetAwaiter().GetResult();
+
+        return View(); 
     }
 
-    private static ActionResult View(string a)
+    private static ActionResult View()
     {
         throw new NotImplementedException();
     }
