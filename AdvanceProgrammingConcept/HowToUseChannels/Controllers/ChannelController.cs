@@ -8,6 +8,7 @@ namespace HowToUseChannels.Controllers;
 [Route("[controller]")]
 public class ChannelController : Controller
 {
+    [HttpGet("Send")]
     public IActionResult Send()
     {
         Task.Run(() =>
@@ -18,14 +19,17 @@ public class ChannelController : Controller
         });
         return Ok();
     }
-    public Task<bool> SendB([FromServices] Notifications notifications)
-    {
-        return notifications.Send();
-    }
+    [HttpGet("SendA")]
     public bool SendA([FromServices] Notifications notifications)
     {
         return notifications.SendA();
     }
+    [HttpGet("SendB")]
+    public Task<bool> SendB([FromServices] Notifications notifications)
+    {
+        return notifications.Send();
+    }    
+    [HttpGet("SendC")]
     public async Task<bool> SendC([FromServices] Channel<string> channel)
     {
         await channel.Writer.WriteAsync("Hello World");

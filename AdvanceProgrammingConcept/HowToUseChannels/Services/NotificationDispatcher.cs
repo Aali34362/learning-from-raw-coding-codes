@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Dumpify;
+using Microsoft.EntityFrameworkCore;
 using System.Threading.Channels;
 
 namespace HowToUseChannels.Services;
@@ -20,6 +21,7 @@ public class NotificationDispatcher(
         {
             // read from channel
             var msg = await channel.Reader.ReadAsync();
+            msg.Dump("Read from channel");
             try
             {
                 using (var scope = provider.CreateScope()) 
@@ -31,9 +33,11 @@ public class NotificationDispatcher(
                         await database.SaveChangesAsync();
                     }
                     var user = await database.Users.FirstOrDefaultAsync();
+                    user!.Dump("Read from In Memory");
                     var client = httpClientFactory.CreateClient();
                     var response = await client.GetStringAsync("https://docs.microsoft.com/en-us/dotnet/core/");
                     user!.Message = response;
+                    user!.Dump("Read from In Memory");
                     await database.SaveChangesAsync();
                 }
             }
