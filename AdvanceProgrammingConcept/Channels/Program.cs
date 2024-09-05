@@ -1,1 +1,3 @@
-﻿
+﻿using Channels;
+
+VideoProcessingProblemProgram.VideoProcessingProblemProgramMain();

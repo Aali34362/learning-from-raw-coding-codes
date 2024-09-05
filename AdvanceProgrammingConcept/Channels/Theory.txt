@@ -1,0 +1,5 @@
+Channels are there to solve concurrency and parallelism problems
+Primary problem Channel solve is a producer/consumer problem.
+If in your code if something is producing something and other thing has to consume it we need Channels.
+
+
