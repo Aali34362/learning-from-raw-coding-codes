@@ -630,3 +630,44 @@ When to Use .ConfigureAwait(true) or Default Behavior
 
 Using .ConfigureAwait(false) can lead to more efficient and responsive code, especially in library code 
 or in scenarios where the synchronization context is not needed. However, be cautious in UI applications where you need to update the UI after the await.
+
+--------------------------------------------------------------------------------------------------------------------
+
+Using the async keyword in a constructor is not allowed in C#, and here's why:
+
+1. Asynchronous Constructors Are Not Supported
+In C#, constructors cannot be async. 
+The reason is that a constructor's primary purpose is to initialize an object synchronously and return an instance of that object. 
+Allowing async constructors would break the object creation model since constructors are expected to complete immediately,
+whereas async methods are designed to potentially complete later when an awaited task finishes.
+
+2. Object Creation Timing
+When you call new to create an object, the constructor runs synchronously, and the object should be 
+fully initialized when the constructor returns. 
+If constructors were async, the object would not be fully initialized until the asynchronous task completes, 
+leading to uncertainty about the object's state and possibly allowing the partially constructed object to be used before it's ready.
+
+3. Design Alternatives
+Instead of making a constructor async, the standard approach is to:
+    Use a factory method (a static async method that returns a task) to handle asynchronous initialization.
+    Use an asynchronous initialization method within the class that can be called after the object is created.
+
+4. Reasoning
+    Predictable Object State: 
+    When using a factory method, the object’s constructor runs synchronously, ensuring that the object is fully initialized before it's used. 
+    Any asynchronous work is handled after the object has been instantiated.
+
+    Clarity: 
+    The factory method pattern makes it clear that there is asynchronous work involved in creating the object. 
+    This avoids confusion about the object's state and ensures that no code interacts with a half-initialized object.
+
+5. Why Not Make Constructors Asynchronous?
+If constructors were async, they would return a Task or Task<T>, which would mean you'd have to await object creation, 
+making the standard new keyword cumbersome and unintuitive. 
+This breaks the convention of object-oriented programming where new immediately provides a fully initialized instance.
+
+Conclusion
+You shouldn't use async in a constructor because:
+    Constructors are designed to complete synchronously, and introducing asynchronicity would lead to unpredictable object states.
+    Using async in constructors is unsupported and unnecessary—factory methods or 
+    asynchronous initialization methods are better design patterns for handling asynchronous work during object creation.
