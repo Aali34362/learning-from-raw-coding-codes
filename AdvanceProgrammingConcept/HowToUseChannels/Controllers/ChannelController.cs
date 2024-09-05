@@ -6,7 +6,7 @@ namespace HowToUseChannels.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class WeatherForecastController : Controller
+public class ChannelController : Controller
 {
     public IActionResult Send()
     {
