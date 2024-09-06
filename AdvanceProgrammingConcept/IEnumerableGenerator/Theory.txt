@@ -35,6 +35,13 @@ section I also stream on Wednesdays and Sundays starting around six seven o'cloc
 
 --------------------------------------------------------------------------------------------------------------------------
 
+IEnumerable is an interface that defines one method GetEnumerator which returns an IEnumerator interface, 
+this in turn allows readonly access to a collection.
+A collection that implements IEnumerable can be used with a foreach statement.
+
+
+
+--------------------------------------------------------------------------------------------------------------------------
 IEnumerable:
 Purpose: 
 IEnumerable is an interface that defines one method, GetEnumerator(), which returns an IEnumerator. 
