@@ -5,7 +5,7 @@ namespace IEnumerableGenerator;
 public class MySimpleGen
 {
     public int _value = 1;
-    public int Value => _value;
+    public int Value => _value++;
     public static void MySimpleGenMain()
     {
         
