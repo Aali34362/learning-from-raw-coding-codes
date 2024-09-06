@@ -1,0 +1,251 @@
+The Problem Before MVC:
+Before introducing the Model-View-Controller (MVC) pattern, 
+applications typically followed a monolithic or spaghetti code approach, 
+where the UI (presentation layer), business logic, and data access were often tightly coupled 
+and written together in the same codebase. 
+
+This led to several issues:
+    Tight Coupling:
+        The user interface (UI), business logic, and data access logic were not clearly separated.
+        Any change in one area (e.g., UI) could potentially impact other areas (e.g., data handling or business logic).
+        Maintenance and updates became challenging.
+
+    Poor Scalability and Maintainability:
+        With everything intertwined, the codebase became difficult to scale or modify. For example, 
+        adding new features or making updates required developers to understand the entire system, 
+        even if they were only modifying a specific aspect (UI, data, etc.).
+        Small changes in one part of the system could introduce bugs in other unrelated areas.
+
+    Code Duplication:
+        Without separation of concerns, developers often had to duplicate code across different parts of the application.
+        This led to redundancy and inconsistency, making it harder to maintain and update the application as it grew.
+
+    Testing Difficulties:
+        The lack of separation made unit testing or integration testing difficult. 
+        Business logic was often mixed with the presentation logic, making it harder to isolate parts of the application for testing.
+
+    User Experience (UI) Flexibility:
+        Since the presentation logic was closely tied to the business logic, 
+        changing the user interface (e.g., adding a new view or supporting different devices) 
+        required significant rewrites of both UI and logic code.
+
+The Solution: MVC Pattern
+
+The MVC pattern solves these problems by introducing clear separation of concerns, 
+splitting the application into three core components: Model, View, and Controller. 
+Each component is responsible for a distinct part of the application's functionality, addressing many of the issues that plagued earlier approaches.
+
+1. Separation of Concerns (SoC)
+    Model: 
+    Handles the business logic and data. 
+    It represents the application's data or state and interacts with the database.
+    
+    View: 
+    Responsible for displaying the user interface. 
+    It receives data from the controller and presents it to the user in a formatted way (usually as HTML in web apps).
+    
+    Controller: 
+    Manages user input and requests. 
+    It interacts with the Model to process data and sends it to the View for rendering.
+
+This separation allows each part to evolve independently without affecting the others, solving the tight coupling problem.
+
+2. Improved Maintainability
+    With the separation of concerns, developers can easily update or modify one part of the system 
+    (e.g., updating the user interface) without affecting the business logic or data access.
+    Code is more organized and modular, making it easier to troubleshoot, fix bugs, and add new features.
+
+3. Reusability
+    Code duplication is reduced, as business logic (Model) and data access can be reused across different views and controllers.
+    The separation allows the same business logic to be used in different user interfaces or across different platforms.
+
+4. Testability
+    Testing is simplified because you can isolate individual components (Models, Controllers) and test them without requiring the entire application to run.
+    Business logic can be tested independently of the UI, making automated testing more practical and effective.
+
+5. Flexibility in User Interface
+    MVC makes it easier to develop multiple user interfaces (e.g., desktop, mobile, and web versions) 
+    for the same business logic, as the View is decoupled from the Model and Controller.
+    You can easily change how data is presented without altering how it is processed or stored.
+
+Example Scenario
+
+Consider a basic web application that allows users to view and purchase products:
+
+    Without MVC:
+        The HTML, CSS, and JavaScript for the product page might be intertwined with code that 
+        queries the database for product details and handles the purchasing logic. 
+        Updating the layout of the product page or adding new product features would require you to dig through business logic and database code.
+    With MVC:
+        The Model handles data (e.g., fetching product details from the database).
+        The View displays the data to the user (e.g., showing product details in a user-friendly format).
+        The Controller handles user interactions (e.g., responding to user clicks to view a product or make a purchase) 
+        and decides how to pass data between the Model and View.
+
+If you want to update the product page's design, you only modify the View. 
+If you want to change how products are fetched, you only modify the Model.
+
+Summary of Problems Solved by MVC
+
+    Separation of Concerns: MVC decouples the user interface from the business logic and data access, solving the tight coupling problem.
+    Maintainability: The separation allows for more maintainable code, reducing the complexity of changes.
+    Reusability: Business logic and data access can be reused across different views, reducing code duplication.
+    Testability: Isolated components make unit testing and integration testing easier.
+    UI Flexibility: The decoupling of the view allows developers to change the user interface or support multiple UIs without changing the business logic.
+
+Thus, MVC makes the application more modular, scalable, testable, and maintainable, solving the inefficiencies and complexity of earlier monolithic designs.
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+Model-View-Controller (MVC) is a design pattern commonly used in ASP.NET Core to separate an application's concerns into three main components:
+1. Model
+
+    Represents the application's data and business logic.
+    It directly interacts with the database and handles data retrieval, storage, and manipulation.
+    Can include classes that define entities, validation logic, and data processing rules.
+public class Product
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public decimal Price { get; set; }
+}
+
+2. View
+
+    Responsible for rendering the user interface, typically by generating HTML.
+    Views are usually tied to models and present the data in a user-friendly format.
+    In ASP.NET Core, views are typically Razor files (.cshtml) which allow embedding C# code within HTML.
+@model Product
+<h2>@Model.Name</h2>
+<p>Price: @Model.Price</p>
+
+3. Controller
+
+    Acts as the intermediary between the Model and View.
+    Handles incoming HTTP requests, processes them (using the model), and determines the response (often returning a view).
+    Typically includes methods called "actions" that respond to user input.
+public class ProductController : Controller
+{
+    private readonly IProductRepository _repository;
+
+    public ProductController(IProductRepository repository)
+    {
+        _repository = repository;
+    }
+
+    public IActionResult Index()
+    {
+        var products = _repository.GetAll();
+        return View(products);
+    }
+
+    public IActionResult Details(int id)
+    {
+        var product = _repository.GetById(id);
+        if (product == null) return NotFound();
+
+        return View(product);
+    }
+}
+
+Request Flow in ASP.NET Core MVC
+
+    HTTP Request: The user interacts with the application by making a request (e.g., navigating to a URL).
+    Routing: The request is routed to the appropriate controller based on the route defined in Startup.cs or Program.cs.
+    Controller Action: The controller action is invoked, interacting with the Model.
+    Model Interaction: The controller fetches or manipulates data through the Model.
+    View Rendering: The controller returns a View (or other result) based on the Model’s data.
+    HTTP Response: The View generates HTML (or another response), which is sent back to the user.
+
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddControllersWithViews();
+}
+
+public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+{
+    if (env.IsDevelopment())
+    {
+        app.UseDeveloperExceptionPage();
+    }
+    app.UseRouting();
+    app.UseEndpoints(endpoints =>
+    {
+        endpoints.MapControllerRoute(
+            name: "default",
+            pattern: "{controller=Home}/{action=Index}/{id?}");
+    });
+}
+
+Summary:
+
+    Model: Manages the application's data and business rules.
+    View: Presents data to the user in the form of HTML or other UI.
+    Controller: Handles user input, interacts with the model, and renders views based on user actions.
+
+You can extend this architecture by adding services, repositories, and other components as needed to meet more complex business needs.
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+welcome everyone today we're gonna be dissecting MVC primarily first thing we're gonna be looking at is the problem like what kind of problem does it solve and how did it will become MVC itself and then we'll dissect the inner mechanisms of MVC is actually built okay in order to understand it basically rebuild the whole thing so I'm gonna be using link pad link is in the description and the first thing that we want to start off with is just get an idea like what what does MVC so we have a view we have some logic that we want
+to execute based on the action that somebody is taking on the view and then the way we communicate between the controller and the action is the model okay that's how we pass information around and today primarily we're gonna be looking at the asp net core version of MVC where we have a back-end right and how do we know which controller we want to resolve okay that's the primary question and which action do we want to execute without tightly coupling in the view to the actual function okay so let's go ahead and make it alright
+because this is where we start off right we're gonna send some kind of information to the backend and the backend should basically find out what action its gonna execute right so in your URL we're gonna have an HTTP I don't actually have a back-end this is just a way to find out how can we traverse the URL and what kind of things can we do okay and then we're gonna go to home index easiest controller probably everybody who's watching this video made this controller so then we're gonna go ahead basically assume that we
+are hitting our localhost and just be tiny bit right and let's get the absolute path and I'm gonna use the dump function this is only for a link pad okay so some people have been asking me where is the dump function it's a link bad specific thing which will let you basically output stuff your results window here so you can see the absolute path we get the home and index now what kind of things can we do without having MVC to basically you know what what logic are executing right well if you've been programming for any
+amount of time the first thing that you really can do is basically say right you all right well take the absolute path we'll split it by the slash we'll dump this let's see what we get I'll delete this bad right so we get the first space which is basically just the the nothing in the in the like before the slash right so let's go ahead and do a skip here we're just gonna skip one so we end up with home and index okay so here's where the convention can again what you can actually do straight up is
+basically just say right if absolute URI absolute path starts with all flash index then we can basically say execute some logic right so here we can go straight to the action but the problem that you can see that I'm outlining here is we're using an if statement right so if we have more than one or two routes we're gonna have an equivalent amount of if statements and this is not scalable it's like you're not logically determining what controller you're you need to use or what function you want to trigger what
+you're doing here is you are manually mapping out every possible solution all right this is not what kind of programming is about we want to logically determine stuff okay and this is basically the primary outline of the problem we don't want to go into the pit of manually mapping out everything we want to automatically resolve the controller and what we want to use okay so I'm gonna go to a different file and basically here we're gonna start working towards building a more abstract concept right I don't want to dwell too much in
+this space because the fact that we already have to put an if statement for a specific route kind of already it's gonna indicate how complex and verbose this is gonna get hey so how do we build MVC right so the primary thing to understand this I don't think I mentioned this in the other videos like dependency injection and middleware videos where basically the problem that we're solving is not a business logic problem right this problem is our problem our problem as programmers right this is a programming problem we are
+trying to solve the problem of scalability of not having to write these F statements right so the primary problem that we're solving is how we write code and usually that will fall under a reflection category okay and expression trees so the if you want to change the style in which you write code you usually use reflection and expression trees to accommodate that change okay so here we don't want to create if statements what we want to do is we just want to follow a convention and just map the route to the action hey
+let's first create this action that we can hit all right public and we will do something very familiar right public class home controller and this is something you CNAs being a Korra all the time and again we will do public string.index we're just gonna return hello world here and if you watched my previous videos and reflection first thing that we want to do is we want to be able to discover this controller okay we want to find out anywhere in our program where do we have controllers the way I like to discover
+my classes is I will make something like an abstract class and let's call it controller and we don't really need to put anything in there this is purely for discoverability okay so from this point on you can try to go ahead and discover these classes yourself if you don't know how to do this and go ahead and go ahead and see why so let's go ahead and get the type of controller alright so we need to get the assembly names out somehow and we can reuse this type of controller so let's say controller type
+and what we'll do is we'll go to controller type and we will go to assembly and from assembly we can get types right so we have a class we check what assembly it's in and in this assembly we have everything that we've ever registered right so that's how we basically hey right where are you located and give me everything that's in there okay and here we can go ahead and dump this and at the moment we don't have too many things we have like a three classes we have the user query controller and home controller what we
+want to narrow it down is to this home controller so we just want to extract the actual implementations of the controller so here we can say things like select and that let's say we want to remove the user query and controller and the way a way we can do this is say like is it abstract make sure make sure it's not okay and instead of select let's actually do where right okay so here we have eliminated the controller but the user query and whatever this is seems to not be abstract so here we want to say right
+where we'll yet we're getting things that are non abstract now how about we get controllers or rather classes it doesn't matter what this home controller is named or whatever what matters is does it it kind of does it inherit from controller this is where we can say basically controller type and I kind of remember and I can never remember this function but it's something like implements or is assignable from that's the one so is assignable from type of and let me drop this new line so it's visible as well is
+assignable from type of home controller right so at this point if we dump we get all of the classes and this is a silly mistake because I'm basically for every type that we get from here I'm basically saying is it assignable from home controller so this Clause is going to return true for all of them so what we actually want to do is we want to compare it to the type that we're extracting a so instead of this let's go ahead and pass X and if it makes it any easier we can rename X to type ok so
+type is an abstract nope controller type is it assignable from this type see okay so at this point we have our home controllers and generally because an assembly scan is a perform a very performant operation where we'll need to sort of hash this or store this somehow alright and this is an ienumerable type so let's go ahead and we can basically store this write our controller types okay so here we are we basically have our controllers that we discover if we add more so let's create a test controller right so we pretty much at a
+point where we're extracting all of our controllers from the program that we have written them in what are the next steps the next steps is we want to be able to grab the function okay and since this is going to get a little bit too much for the main function here I'm actually going to go ahead and extract this into its own class right so I will kind of grab all the logic relating to MVC and I'll stick it in one cluster gonna make it a little bit more digest Tanner and I'll name it MBC container so
+in the constructor what I will do is when we initialize MVC container that's where we are going to load all the classes and then we can reuse that use the same container essentially it can be a singleton sort of thing you can see that we have an ienumerable of types here so let's go ahead and make that enumerable of type and it's probably going to be better if it's a list and let's call this controller types okay and let's name this a new list of type and initialize this list right you can
+initialize it from the constructor it doesn't matter that much can go ahead grab all of this and instead of initializing a variable here just remove that and that should assign you this bit here and I'll remove the dump and instead I will replace this with two lists okay so let's go ahead back to the MVC problem I will just grab the you arrived from here and I'll paste it here we'll also go ahead and just create an instance of the container so we just kind of know where to move next in new
+MVC container so at this point when we're gonna create this container we're gonna have all of our controllers where do we move next well the kind of logical step is that we have this container whatever it does inside what we really want to do is whatever happens we want to resolve this URI to some kind of view or some kind of response from it okay so because it because the container when we resolve the URI can return a string you can return an int it can return an object right so at this point we will
+have to return an object because it can be that flexible anything okay so public object Brasil URI all right and for now let's return no how do we know which controller we want all right so let's go ahead and first of all get the controller so our controller get controller okay and the way that we resolve the controller is again through the URI right this is how we do it this is the convention where that we're gonna follow how we name our controllers is basically going to map this URL here so let's go
+ahead and get the controller so I'm gonna go ahead and public controller we don't know exactly what it controller it is but it inherits from this abstract class controller so we can go ahead and map it to that and yeah yet controller again we're gonna be passing you all right here and again let's return no here or now so get controller how can we map the URI to the controller types let's go ahead and in this function let's grab our controller types we'll dump them and let's see what we have so
+for example for the home controller it's it kind of says home controller there so what we can do is try to find something I don't know his name okay so this is why link path is so nice sometimes you can just visualize things a little bit different right so home controller and if you remember how our URI started with a slash which we could skip so at this point you kind of want to map your home controller to the home index so let's do this what I'm gonna do is step by step I'm gonna select a name
+so I can sort of have a little bit of a easier inspection on what I'm working with and then I'm gonna use your EIN and I'm gonna dump your as well and let's get the absolute path instead okay so here we are so what's the difference between slash home and home controller well a home is capital case so when we compare we can ignore case and the home starts with a slash so what we could do is append the name with a slash right why not go ahead do this and this variable here okay so that's pretty much it now
+we have this part which in match with this part if we ignore case so how about we go and do that so we'll instead of select we will say where well grab this name and what we'll do is we'll take the absolute path and we'll say that it starts with the same bit here okay and at the moment it's not gonna match anything oh let me remove this dump function here I'm gonna match anything because the case is it's a sensitive right so if we go to starts with we open up the assemblies and basically we take a look at what is
+available we can see a string comparison overload so let's go ahead and use that overload I'm gonna drop this to a new line and in here we can go for a string comparison and variant culture ignore case okay and we still get zero items and that is okay because I basically messed up the positioning a little bit what should have been here is this name because the absolute your eye path is let's say we'll dump list here alright so again it's slash home slash index and actually know that does make sense what
+we want to do is we want to return the or rather get rid of the controller here a and maybe if I don't put this instead it will be a little bit more visible right so now what I want to do is I want to get rid of the controller bit so place controller with nothing okay so this is a very crude implementation but nevertheless this is just more of how it happens the logical steps you can make this very low-level and perform it well okay so just keep that in mind so at this point we're getting our home controller let's
+go ahead and remove this stuff run this and dump is happening here on the end let me format this a little bit maybe it's a little bit easier to see and now what we can do instead of the where we can just say first or default remove the dump and grab our controller type right here let's drop this down here as well and then then this a little bit okay so not very readable but more or less you can simplify this as well the main part here is that we do have our controller type so now what we can do is we can go
+ahead and activate it right so we're gonna use the activator and if I remove this create instance controller type and we're gonna pass null for the parameters again if you watch the dependency injection bit this is where we can use the dependency injection container to basically get a type because all we do is pass the type to okay and that's pretty much it and on the end here because this is gonna return an object we just go ahead and cast it okay and this is pretty much it what we can do now is grab our controller here and dump
+it right so we can just take a look at it right so simple home controller we have an instance we don't know exactly what controller it is how do we find out what action we need to trigger and that's rather the next logical step we at the controller we need to find the action and now we would like to actually invoke the action and get the result all right so let's go ahead and get the action so action yeah action and again we will need our uri and the controller let's go ahead pass the controller that we have found
+and the uri again and let's go ahead and make this function will it make it for me well nice and this will rather be method info as you will see it in in a bit I'm just putting it here preemptively but same as always I'm just going to return null here I no longer need to dump this controller because as you can see in the output window here it's rather pretty simple okay so once we are in the get action how do we find out what methods our controller has and if you guess it its reflection again
+right so let's go ahead grab type off the controller right here and we'll dump it just so we can take a look at what's in there and probably not like this because that's a compile-time will rather say get type here and alright so we get the type and by the way you can do it as much as activating the instance later on here and actually passing the controller type to this function here so you don't have to get type again and this this is just a performance thing okay so let's take a look at what we
+have what we're looking for our methods right so declared members declared methods let's take a look at this look list oh look there is our index method right let's go ahead and just make a test function here as well so let's go ahead and make test well we'll run this again and we'll scroll down here just to understand that is indeed what we're looking at right so declared methods index test again we know we have the name so this is how we can discover this stuff let's go ahead
+and get the methods so we will try to search for declared methods I only have declaring methods so that's not gonna do next thing we just search for a function it members nice that it's nice that it's there hey let's go ahead and run this we can do extra things to sort of filter this list as you can see we have the constructor get hash code equals to string whatever but really all we all we need really is a name right so let's go ahead and do something along the lines of your I absolute path again so we know
+we're working with and for the members for now what we'll map this to select and we will get the name and we'll dump the name right so we can get a parallel of how do we actually want to work this out and usually for the controller type and the action how we basically get those things or rather yeah get action and get controller you don't use these if statements or these predicates in link what you really do is you use regular expressions and the regular expression groups to extract those variables okay but that is a little I
+think this is a little bit too advanced and regex it can introduce a lot of complexity into this example so what we're doing is a simplistic example okay just know that there are a lot of techniques that you can apply to make this solution more abstract and more flexible okay so again we have a home and we have the index let's go ahead and just do a split by the slash okay so alright we have nothing home and index what we want to do then and is just grab the last one and we have index and by the way if you
+are remembering towards how real controllers work how you can have default routes how you have special handling if you just go to home slash again that's just an implemented detail it's a feature it's not a solution to a problem okay we could implement that where we want all right so we have our action let's go ahead and say grab action and instead of select we're say we'll say again first our default and let's drop this to a new line actually what we will do here is we will use the equals compare we'll
+compare it to the action and again we will use string comparison to compare to in variant in our culture case okay so now what we will have is hopefully a method info and this is I've noticed rather that it's member info because I get members let's see get methods instead okay the methods still have names okay so let's drop this down to a new line a little bit make it bit don't need this return here and what we can do is let's just dump with action here see what it looks like and here it is so
+runtime method what we can do with the action is we can invoke it so we actually trigger the function and just to step over how we get the action again we basically we get the last thing in the URI so again we can go ahead and dump this and because this is a you alright if we do put something like parameter here let's call it message will say hello you can see that we still get index here because the absolute you're right here the query is not included in there okay so it is kinda safe right but not again you would use
+regex for this sort of thing you wouldn't use such a concrete implementations such as a link statement but nevertheless where are we we know the controller that we want to execute we know the action on that controller that we want to execute what is left right well I securing the action on the controller okay so let's go ahead and call the in go function we're gonna put a controller in there as the first parameter and then it's the actual parameters that go into the function right so the way to think
+about this statement is we have a method we want to invoke this method where is this method present on this object this is needed any parameters no so invoke returns a nullable object let's go ahead and return here and this is pretty much it okay what we want to do now is we just want to dump the result if it makes a little bit I don't know more ya know the word doesn't come to me I don't know what I wanted to say we can dump the result and here we have hello world again if we want to go to test we can we
+can go ahead and say go to test controller and we will say test world refresh test world if we want to go to test hello test we will go home test run this hello test okay so now that you can see we're not really in need of writing more code of these if statements if we want to handle more routes if we just write the thing with the logic okay we don't well we don't need to create another if statement and this is the problem that reflection solves and this is the problem that MVC salts okay it's
+a scalable solution you only need to change one place in order to introduce a change if we have to make two two changes and basically creating an if statement and then creating some kind of logic handler that's not scalable okay gaile ability is one change in one place okay so now for fun we are going to take a look at maybe how to do some model binding right so let's say we want to pass this message here and by the way I'm just gonna do really simple model binding model binding as you know can become
+very complex you can do from query from form from body from headers from route right there are a lot of different ways the model binding in ESPN accor is a lot more complex that are what I'm gonna show you here but this is just a simple implementation and again it's just looking at how you can use a reflection to achieve these sort of things okay so index right how do we know what parameters where do we even pass the parameters right so if we take a look at the result function we have the null here okay so let's get the parameters if
+we take a look at the invoke function or rather if I hovered it there I could see it but essentially the parameter that we want to pass is an object array okay so let's go ahead and grab our parameters which will be here and the parameters we'll be able to see on the action so let's just dump reaction here before we go anywhere and hey you're right yeah the URI again we're where the parameter is gonna be in the URI and what usually would happen is you replace the URI with the HTTP context where you have
+information to all the things in the request like cookies headers I mean is our headers body form etc and then you perform that logic on the HTTP context rather than a simple you are again this is a simplified solution let's go ahead and implement yet parameters we are going to be returning an object array this is private doesn't really matter not a real project let's go ahead and return null what we can do is just grab these parameters put them here it's gonna break but we don't really mind
+that much what we really mind is taking a look at the action what do we actually have and how can we take a look at the parameters that we need to supply so I'm dumping it here let's go ahead and take a look at the runtime method anything that talks about what parameters we have only the return parameter nothing else seems to be mentioning parameters okay so let's go ahead and remove the dump here and we'll we can do what you usually do if you can't find the properties on there take a look at what methods you got right so
+method info let's just type in parameter or parameters function let's go ahead dump this and we don't have any parameters because we're looking at the status function so let's go back to the index page and really what we can do and safe handling is let's say parameter types equals this and parameters types count actually let's call two lists on here and count if it's zero return null okay we don't want any parameters in this and this will work fine so quick little safeguard that we could put there
+let me put the dump on the new part here refresh this and what I'm gonna do is I'm gonna go back to the index page where we indeed do have parameters and I cannot I can no longer invoke this with a null so here we have our parameters you can see that the name is message and the parameter type is string so what how do we want to approach this so let's let me just ensure actually I will stick stick with one parameter and then we're gonna bump this up to two parameters and we're gonna see at how this can behave
+and well just the general problem-solving that you have to do in order to get this to work so parameter types let's instead rename these two parameter in folks okay so this is just parameter info and we get a bunch of parameter isn't infos because the way I'd like to map this parameter to the method it's just to be aware does it have the correct order sort of thing okay because you have more than one it can get a little bit weird well let's replace the spoofed parameters info so it compiles next
+thing we want to take a look at the URI and we want to take a look at the query part so let's take a look at the right type in query and we have query let's go ahead and dump this and let's see what we're working with message hello what we can now use is HTTP utility bring this in and we can parse query string and let's go ahead and pass our query into here and let's put the query here and we'll dump this so again we can get a better visual on this okay so now what we can do is we can do something along
+the lines of query let's say message as the key we can dump this and we will get hello okay and for the parameter infos can dump this and where do we get the key from write the name is there so again what can happen is they can be different cases so what you and to do is you just ignore the case sighs okay unless you don't want to do that then I mean the implementation detail is up to you we want to be able to return an array of objects and really what we can do is maybe yield enumerable oh well I don't
+think them that'll be a good idea let's let's go ahead and create an object array it's going to be the results and it's gonna be a new object array and the length is going to be as many parameter as much parameters as we have so let's go ahead wrap the count here put this here semicolon let me rename this to var and parameters infos I don't need to dump that anymore I know I can grab the name I have the utility and I know how I can grab the value that I want to bind right so let me actually keep this here
+I'll put a value tag on this so you can see the collection and we can see the value that we want to work on let's create a for each loop so now what we're going to do is we're going to loop through all the parameter informations that we have and we're gonna instantiate them one by one okay so RP info equals a parameter and goes and equals but rather in and here we are so this is probably a little bit better with a loop since we already created a result array so we'll need an index so let's create this instead and
+here what I will be doing is using parameter info count and I plus plus Oh so here's our simple for loop so how do we know how to bind the value first thing that I want to do is wrap the value right so bar value equals query string put it here and here what we will do is we'll replace this with parameter okay let's grab the info parameter enclose we'll grab the first one or rather the index one and for the info we're going to scrap the name right and that was the key as we've seen it here
+let's go ahead and run this and we still get the correct value right here what we now want to do is we want to create an instance of the parameter so what we do is we grab the type same as we how we create the instance for the controller we need to know the type of the controller to create the instance right so again parameter infos I dot and we look for the type it i premiere type there we go if you get type on parameters infos you're gonna get the type of parameter in folks so don't make that mistake they grab the parameter
+type okay so that's going to be the type class of the parameter that the parameter info describes so we can go ahead and dump this and we can just specify the type flag here so we have a better better visual that it's a string and here what I will opt in for is again not the best solution I will go for if statements and usually you would use something else like more complex with mechanism this is again just a simple implementation we're gonna say type and does this type equals type of string okay and
+it is I can just go ahead and grab the results objects and for whatever I I can grab the value and I can to string it so let's hover over the value and I don't think it will always be two string here or at least I don't think so no I will it'll be string so we don't need to call to string on it yeah let's see what happens and in the end let's go ahead and return the results actually right and there we go wherever this dump is happening right here don't want to really see it and the dump of
+the type I'm gonna see it as well go ahead run this and get hello world in the end so what next can we do to spice this up let's go ahead and add an integer and we'll just bind it try to bind it in different directions so again we'll do and and and we'll do something like num 5 and we will go to our function and because we have message number what I will do is I'll say number message a so and num and string and let's let's actually output it as how can you point and if you put the message
+here and then them and don't forget to wrap this okay let's run this and here we have hello and 0 so what has happened we don't actually handle the binding of the integer type again if we go on the parameter type and we dump this we will see that it's integer 32 and string but what we can do is add an if statement so oops a else if type equals by power and 32 what we do is we just say results and in 32 ours the value okay and now if we run this we get hello five so this is pretty much it or the
+poor man's model binding and NBC I don't think this solution is particularly hard for MBC but again as I've said there are a lot of things that we have simplified such as model binding but the action discovery and controller discovery and loading instantiation it's pretty much the same at least at the core of it okay and hopefully you understand the concept well this will be it for this tutorial thanks for watching if you enjoyed it leave a like subscribe if you have any questions make sure to leave them in the
+comment section don't forget to join the discord channels I do a lot of updates there there's also a giveaway coming up I also stream on Wednesdays and Sundays on Twitch link is in the description have a good day and hopefully I'll see you my other episodes

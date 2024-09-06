@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Channels", "AdvanceProgramm
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HowToUseChannels", "AdvanceProgrammingConcept\HowToUseChannels\HowToUseChannels.csproj", "{F365C5BF-DD21-44AD-8AB6-CB5A6996C6FF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelViewController", "AdvanceProgrammingConcept\ModelViewController\ModelViewController.csproj", "{B6F0A92D-E358-423A-90BB-A6962B6F2A5A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{F365C5BF-DD21-44AD-8AB6-CB5A6996C6FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F365C5BF-DD21-44AD-8AB6-CB5A6996C6FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F365C5BF-DD21-44AD-8AB6-CB5A6996C6FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6F0A92D-E358-423A-90BB-A6962B6F2A5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6F0A92D-E358-423A-90BB-A6962B6F2A5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6F0A92D-E358-423A-90BB-A6962B6F2A5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6F0A92D-E358-423A-90BB-A6962B6F2A5A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -51,6 +57,7 @@ Global
 		{8F98174E-B168-4019-B263-CC090E45FBB6} = {B8816315-7735-4061-A064-8778427EB433}
 		{438276D7-C1FC-412E-9CA4-9C8FE54CBD58} = {B8816315-7735-4061-A064-8778427EB433}
 		{F365C5BF-DD21-44AD-8AB6-CB5A6996C6FF} = {B8816315-7735-4061-A064-8778427EB433}
+		{B6F0A92D-E358-423A-90BB-A6962B6F2A5A} = {B8816315-7735-4061-A064-8778427EB433}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {47F9E876-1C24-4093-9D33-B561A3731B32}
