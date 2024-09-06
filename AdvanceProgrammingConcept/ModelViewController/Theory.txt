@@ -249,3 +249,126 @@ the type I'm gonna see it as well go ahead run this and get hello world in the e
 here and then them and don't forget to wrap this okay let's run this and here we have hello and 0 so what has happened we don't actually handle the binding of the integer type again if we go on the parameter type and we dump this we will see that it's integer 32 and string but what we can do is add an if statement so oops a else if type equals by power and 32 what we do is we just say results and in 32 ours the value okay and now if we run this we get hello five so this is pretty much it or the
 poor man's model binding and NBC I don't think this solution is particularly hard for MBC but again as I've said there are a lot of things that we have simplified such as model binding but the action discovery and controller discovery and loading instantiation it's pretty much the same at least at the core of it okay and hopefully you understand the concept well this will be it for this tutorial thanks for watching if you enjoyed it leave a like subscribe if you have any questions make sure to leave them in the
 comment section don't forget to join the discord channels I do a lot of updates there there's also a giveaway coming up I also stream on Wednesdays and Sundays on Twitch link is in the description have a good day and hopefully I'll see you my other episodes
+
+
+--------------------------------------------------------------------------------------------------------------------------
+
+[FromBody], [FromQuery], [FromRoute], and similar attributes in ASP.NET Core are binding source attributes. 
+These attributes specify how the data for action method parameters should be obtained when an HTTP request is made. 
+They are part of the Model Binding mechanism in ASP.NET Core, which automatically maps incoming request data to parameters in action methods.
+
+Common Binding Source Attributes
+
+    [FromBody]:
+        Binds data from the request body.
+        Typically used for complex types (e.g., JSON objects in POST or PUT requests).
+        The request body is usually deserialized into the target object.
+        Example:
+
+        csharp
+
+    [HttpPost]
+    public IActionResult Create([FromBody] Product product)
+    {
+        // 'product' is bound from the request body (JSON or XML)
+    }
+
+[FromQuery]:
+
+    Binds data from the query string parameters in the URL (e.g., ?id=123).
+    Mostly used for primitive types or small data that is part of the URL.
+    Example:
+
+    csharp
+
+    [HttpGet]
+    public IActionResult Get([FromQuery] string id)
+    {
+        // 'id' is bound from the query string (?id=123)
+    }
+
+[FromRoute]:
+
+    Binds data from the route parameters in the URL (e.g., /products/{id}).
+    Useful for REST APIs where identifiers are often part of the route.
+    Example:
+
+    csharp
+
+    [HttpGet("{id}")]
+    public IActionResult GetById([FromRoute] Guid id)
+    {
+        // 'id' is bound from the route (e.g., /products/{id})
+    }
+
+[FromHeader]:
+
+    Binds data from HTTP request headers.
+    Used when specific information is passed in headers (e.g., API keys or tokens).
+    Example:
+
+    csharp
+
+    public IActionResult GetUser([FromHeader] string Authorization)
+    {
+        // 'Authorization' is bound from the request header
+    }
+
+[FromForm]:
+
+    Binds data from form fields in multipart/form-data or application/x-www-form-urlencoded POST requests (commonly used in web forms).
+    Example:
+
+    csharp
+
+    [HttpPost]
+    public IActionResult SubmitForm([FromForm] FormData form)
+    {
+        // 'form' is bound from the form data in the request body
+    }
+
+[FromServices]:
+
+    Binds a parameter to a service provided by Dependency Injection (DI).
+    Example:
+
+    csharp
+
+        public IActionResult Index([FromServices] ILogger<HomeController> logger)
+        {
+            // 'logger' is injected from the service container
+        }
+
+When to Use These Attributes
+
+    [FromBody]: When you expect the client to send complex data (e.g., JSON or XML) in the body of the request (mostly POST/PUT requests).
+    [FromQuery]: When you need to get simple data passed in the query string (e.g., for filtering or searching in a GET request).
+    [FromRoute]: When your API is RESTful, and you pass resource identifiers (e.g., id) in the route.
+    [FromHeader]: When additional information (e.g., authentication tokens) is passed via HTTP headers.
+    [FromForm]: When the client sends form data, often used in file uploads or form submissions.
+    [FromServices]: When you need to inject a service directly into a controller method from the DI container.
+
+Example
+
+Here's a controller action that demonstrates various binding attributes:
+
+csharp
+
+[HttpPost("submit/{id}")]
+public IActionResult SubmitData(
+    [FromRoute] Guid id,              // Route parameter from the URL
+    [FromQuery] string name,           // Query string parameter from the URL
+    [FromBody] Product product,        // JSON body of the request
+    [FromHeader] string Authorization, // Data from the request header
+    [FromForm] IFormFile file)         // File uploaded through a form
+{
+    // Action logic
+}
+
+In this example:
+
+    The id parameter is bound from the route.
+    The name parameter is bound from the query string.
+    The product parameter is bound from the request body.
+    The Authorization parameter is bound from the headers.
+    The file parameter is bound from a form submission.
