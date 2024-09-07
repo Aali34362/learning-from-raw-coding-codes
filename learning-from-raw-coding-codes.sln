@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IEnumerableGenerator", "Adv
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reflection", "AdvanceProgrammingConcept\Reflection\Reflection.csproj", "{D2CE63DE-C5DB-4A64-9EB6-D9E7E6F6169E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReflectionWebApp", "AdvanceProgrammingConcept\ReflectionWebApp\ReflectionWebApp.csproj", "{E28B4E39-CCFE-4A45-A3C8-A41BAFA84AB5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +61,10 @@ Global
 		{D2CE63DE-C5DB-4A64-9EB6-D9E7E6F6169E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2CE63DE-C5DB-4A64-9EB6-D9E7E6F6169E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2CE63DE-C5DB-4A64-9EB6-D9E7E6F6169E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E28B4E39-CCFE-4A45-A3C8-A41BAFA84AB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E28B4E39-CCFE-4A45-A3C8-A41BAFA84AB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E28B4E39-CCFE-4A45-A3C8-A41BAFA84AB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E28B4E39-CCFE-4A45-A3C8-A41BAFA84AB5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -72,6 +78,7 @@ Global
 		{B6F0A92D-E358-423A-90BB-A6962B6F2A5A} = {B8816315-7735-4061-A064-8778427EB433}
 		{51C5A843-0822-4485-B8B5-6748CCF11824} = {B8816315-7735-4061-A064-8778427EB433}
 		{D2CE63DE-C5DB-4A64-9EB6-D9E7E6F6169E} = {B8816315-7735-4061-A064-8778427EB433}
+		{E28B4E39-CCFE-4A45-A3C8-A41BAFA84AB5} = {B8816315-7735-4061-A064-8778427EB433}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {47F9E876-1C24-4093-9D33-B561A3731B32}

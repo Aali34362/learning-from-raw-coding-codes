@@ -11,4 +11,10 @@
     <PackageReference Include="Dumpify" Version="0.6.6" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="ReflectionWebApp">
+      <HintPath>..\ReflectionWebApp\bin\Debug\net8.0\ReflectionWebApp.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
