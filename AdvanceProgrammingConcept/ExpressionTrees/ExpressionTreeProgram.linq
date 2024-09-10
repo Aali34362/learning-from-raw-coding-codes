@@ -16,4 +16,25 @@ void Main()
  
  Expression<Func<int>> five_exp =() => 5 + 3;
   five_exp.Dump();
+  
+ string url = "http://example.com/users";
+ CreateUrl(url, "name", "age");
+ //CreateUrl(url, ???);
+}
+
+public string CreateUrl(string url, params string[] fields)
+{
+    var selectFields = string.Join(",", fields);
+    return string.Concat(url, "?fields=",selectFields);
+}
+
+//public string CreateUrl(string url, ???)
+//{
+//    return string.Concat(url, "?fields=", ???);
+//}
+
+public class User
+{
+    public string Name { get; set; }
+    public int Age { get; set; }
 }

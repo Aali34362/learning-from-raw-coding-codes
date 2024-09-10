@@ -23,7 +23,39 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reflection", "AdvanceProgra
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReflectionWebApp", "AdvanceProgrammingConcept\ReflectionWebApp\ReflectionWebApp.csproj", "{E28B4E39-CCFE-4A45-A3C8-A41BAFA84AB5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpressionTrees", "AdvanceProgrammingConcept\ExpressionTrees\ExpressionTrees.csproj", "{DC30952A-CF40-4414-B9DF-EBE4D971D317}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExpressionTrees", "AdvanceProgrammingConcept\ExpressionTrees\ExpressionTrees.csproj", "{DC30952A-CF40-4414-B9DF-EBE4D971D317}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Authentication_Authorization", "Authentication_Authorization", "{1A7AD317-68DC-4369-99D7-299CF58241E2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OpenSourceIdentityFrameword_Marten", "OpenSourceIdentityFrameword_Marten", "{A2946A99-4EBE-4F2F-A22C-4D4FEAC70B90}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SignalRTutorials", "SignalRTutorials", "{9A8F270F-BA96-4EEE-8063-C84AAA97B00F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MinimalApiAdventures", "MinimalApiAdventures", "{94911615-71D4-4496-8C50-B1294C4449CB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DistributedCaching_Redis_Google_Cloud", "DistributedCaching_Redis_Google_Cloud", "{A0BFC488-B580-4604-9B7F-6263E79E75D3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DesignPatterns", "DesignPatterns", "{1CC3F595-B132-474B-AA8A-788B2AE0EB4D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ASP.NETCoreBeginnerTutorials", "ASP.NETCoreBeginnerTutorials", "{030434A8-D502-48B5-AA31-ACADF1B40C66}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ASP.NETCoreOnlineShopTutorial", "ASP.NETCoreOnlineShopTutorial", "{0B51FF46-2C12-493C-BF8A-E7AA5B938A06}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VueBeginnerGuide_ASP.NETCore", "VueBeginnerGuide_ASP.NETCore", "{0F72A446-DB46-42BE-8549-5A5FA479BE73}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Working_Files", "Working_Files", "{01298FD8-FF62-4694-BB8F-68F05891F8C7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Angular_ServerSideRenderingTutorial", "Angular_ServerSideRenderingTutorial", "{ABD8750A-CA9D-48B5-B9A6-3DF1AD60D3F8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CSharpRiderSetup", "CSharpRiderSetup", "{F444D78F-737C-4EFE-8A58-A34F6D93F98B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VotingSystem", "VotingSystem", "{315BDC1D-4952-400E-AB08-9FC62CE96B69}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Toolkit_Packages_Labraries", "Toolkit_Packages_Labraries", "{C4E4DB7C-939C-4A88-B81D-AC3980A76A00}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TrickingLibrary", "TrickingLibrary", "{E1652FE9-7AC5-42C2-9A9D-F0704812B6B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Basic_Authentication_Authorization", "Authentication_Authorization\Basic_Authentication_Authorization\Basic_Authentication_Authorization.csproj", "{ECFE09F2-68E3-4F9E-BF94-30709C57B40F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,6 +103,10 @@ Global
 		{DC30952A-CF40-4414-B9DF-EBE4D971D317}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC30952A-CF40-4414-B9DF-EBE4D971D317}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC30952A-CF40-4414-B9DF-EBE4D971D317}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECFE09F2-68E3-4F9E-BF94-30709C57B40F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECFE09F2-68E3-4F9E-BF94-30709C57B40F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECFE09F2-68E3-4F9E-BF94-30709C57B40F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECFE09F2-68E3-4F9E-BF94-30709C57B40F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -86,6 +122,7 @@ Global
 		{D2CE63DE-C5DB-4A64-9EB6-D9E7E6F6169E} = {B8816315-7735-4061-A064-8778427EB433}
 		{E28B4E39-CCFE-4A45-A3C8-A41BAFA84AB5} = {B8816315-7735-4061-A064-8778427EB433}
 		{DC30952A-CF40-4414-B9DF-EBE4D971D317} = {B8816315-7735-4061-A064-8778427EB433}
+		{ECFE09F2-68E3-4F9E-BF94-30709C57B40F} = {1A7AD317-68DC-4369-99D7-299CF58241E2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {47F9E876-1C24-4093-9D33-B561A3731B32}
