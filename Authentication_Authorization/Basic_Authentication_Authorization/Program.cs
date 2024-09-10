@@ -4,7 +4,9 @@ builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
+
 app.UseRouting();
+app.UseAuthorization();
 
 //app.MapGet("/", () => "Hello World!");
 
