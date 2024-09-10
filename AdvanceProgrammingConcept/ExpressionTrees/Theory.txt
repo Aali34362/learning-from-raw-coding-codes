@@ -1,0 +1,10 @@
+Expression Trees in C# represent code in a tree-like data structure where each node is an expression (e.g., method call, operation, or value). 
+These are primarily used for dynamic code generation, querying, and compiling at runtime, especially in frameworks like LINQ.
+
+Key Concepts
+Expression Tree Structure: 
+Nodes in the tree correspond to expressions like constants, variables, method calls, or arithmetic operations.
+Usage: 
+Expression trees are heavily used in LINQ providers to translate LINQ queries into SQL or other query languages.
+Modifying Code at Runtime: 
+You can manipulate expressions dynamically and compile them into executable code.
