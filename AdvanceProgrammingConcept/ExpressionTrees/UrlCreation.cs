@@ -5,6 +5,7 @@ namespace ExpressionTrees;
 
 public static class UrlCreation
 {
+
     public static void UrlCreationMain()
     {
         string url = "http://example.com/users";
