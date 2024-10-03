@@ -1,6 +1,7 @@
 ﻿using Factory.FactoryPattern;
 using Factory.geeksforgeeks.ProblemOriented;
 using Factory.geeksforgeeks.SolutionOriented;
+using Factory.GPTExample;
 using Factory.RefactoringGuru;
 
 new NavigationBar();
@@ -40,3 +41,24 @@ IVehicleFactory fourWheelerFactory = new FourWheelerFactory();
 ClientFP fourWheelerClient = new ClientFP(fourWheelerFactory);
 VehicleFP fourWheeler = fourWheelerClient.getVehicle();
 fourWheeler.printVehicle();
+
+
+//GPT
+
+// Choose the desired database connection by selecting the factory
+IDatabaseFactory factoryMySql = new MySqlConnectionFactory();
+// Create the connection using the factory
+IDatabaseConnection connectionMySql = factoryMySql.CreateConnection();
+// Use the connection
+connectionMySql.Connect();
+connectionMySql.Disconnect();
+
+IDatabaseFactory factorySqlServer = new SqlServerConnectionFactory();
+IDatabaseConnection connectionSqlServer = factorySqlServer.CreateConnection();
+connectionSqlServer.Connect();
+connectionSqlServer.Disconnect();
+
+IDatabaseFactory factoryMongoDb = new MongoDbConnectionFactory();
+IDatabaseConnection connectionMongoDb = factoryMongoDb.CreateConnection();
+connectionMongoDb.Connect();
+connectionMongoDb.Disconnect();
