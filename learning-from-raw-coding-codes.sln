@@ -36,6 +36,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DistributedCaching_Redis_Google_Cloud", "DistributedCaching_Redis_Google_Cloud", "{A0BFC488-B580-4604-9B7F-6263E79E75D3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DesignPatterns", "DesignPatterns", "{1CC3F595-B132-474B-AA8A-788B2AE0EB4D}"
+	ProjectSection(SolutionItems) = preProject
+		Theory.txt = Theory.txt
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ASP.NETCoreBeginnerTutorials", "ASP.NETCoreBeginnerTutorials", "{030434A8-D502-48B5-AA31-ACADF1B40C66}"
 EndProject
@@ -56,6 +59,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TrickingLibrary", "TrickingLibrary", "{E1652FE9-7AC5-42C2-9A9D-F0704812B6B5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Basic_Authentication_Authorization", "Authentication_Authorization\Basic_Authentication_Authorization\Basic_Authentication_Authorization.csproj", "{ECFE09F2-68E3-4F9E-BF94-30709C57B40F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Factory", "DesignPattern\Factory\Factory.csproj", "{C6D4A2EE-8AB7-4A07-BA4E-010FBE829A30}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbstractFactory", "DesignPattern\AbstractFactory\AbstractFactory.csproj", "{D1807567-CE7E-4B06-9A3A-ED14EE31317C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -107,6 +114,14 @@ Global
 		{ECFE09F2-68E3-4F9E-BF94-30709C57B40F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ECFE09F2-68E3-4F9E-BF94-30709C57B40F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ECFE09F2-68E3-4F9E-BF94-30709C57B40F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6D4A2EE-8AB7-4A07-BA4E-010FBE829A30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6D4A2EE-8AB7-4A07-BA4E-010FBE829A30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6D4A2EE-8AB7-4A07-BA4E-010FBE829A30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6D4A2EE-8AB7-4A07-BA4E-010FBE829A30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1807567-CE7E-4B06-9A3A-ED14EE31317C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1807567-CE7E-4B06-9A3A-ED14EE31317C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1807567-CE7E-4B06-9A3A-ED14EE31317C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1807567-CE7E-4B06-9A3A-ED14EE31317C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -123,6 +138,8 @@ Global
 		{E28B4E39-CCFE-4A45-A3C8-A41BAFA84AB5} = {B8816315-7735-4061-A064-8778427EB433}
 		{DC30952A-CF40-4414-B9DF-EBE4D971D317} = {B8816315-7735-4061-A064-8778427EB433}
 		{ECFE09F2-68E3-4F9E-BF94-30709C57B40F} = {1A7AD317-68DC-4369-99D7-299CF58241E2}
+		{C6D4A2EE-8AB7-4A07-BA4E-010FBE829A30} = {1CC3F595-B132-474B-AA8A-788B2AE0EB4D}
+		{D1807567-CE7E-4B06-9A3A-ED14EE31317C} = {1CC3F595-B132-474B-AA8A-788B2AE0EB4D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {47F9E876-1C24-4093-9D33-B561A3731B32}
