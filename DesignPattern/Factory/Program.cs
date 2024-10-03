@@ -3,6 +3,7 @@ using Factory.geeksforgeeks.ProblemOriented;
 using Factory.geeksforgeeks.SolutionOriented;
 using Factory.GPTExample;
 using Factory.RefactoringGuru;
+using Microsoft.EntityFrameworkCore;
 
 new NavigationBar();
 new DropDownMenu();
@@ -62,3 +63,36 @@ IDatabaseFactory factoryMongoDb = new MongoDbConnectionFactory();
 IDatabaseConnection connectionMongoDb = factoryMongoDb.CreateConnection();
 connectionMongoDb.Connect();
 connectionMongoDb.Disconnect();
+
+
+// Use the appropriate factory based on your configuration or input.
+IDatabaseFactoryPattern factory;
+
+// For SQL Server
+// Make sure to replace with your actual SQL Server connection string
+factory = new SqlServerFactoryPattern("Server=localhost;Database=TestDB;User Id=sa;Password=your_password;");
+
+// Create DbContext using the factory
+using var dbContext = factory.CreateDbContext();
+
+// Apply migrations and create the database if it doesn't exist
+dbContext.Database.Migrate();
+
+// Perform database operations
+PerformDatabase.PerformDatabaseOperations(dbContext);
+
+// Use the appropriate factory based on your configuration or input.
+IDatabaseFactoryPattern mySqlFactory;
+// For MySQL
+// Uncomment this line and comment out the SqlServerFactory line to use MySQL instead.
+// Make sure to replace with your actual MySQL connection string
+mySqlFactory = new MySqlFactoryPattern("Server=localhost;Database=TestDB;User=root;Password=your_password;");
+
+// Create DbContext using the factory
+using var mySqlDbContext = mySqlFactory.CreateDbContext();
+
+// Apply migrations and create the database if it doesn't exist
+mySqlDbContext.Database.Migrate();
+
+// Perform database operations
+PerformDatabase.PerformDatabaseOperations(mySqlDbContext);

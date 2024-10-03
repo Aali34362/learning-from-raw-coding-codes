@@ -1,6 +1,6 @@
 ﻿namespace Factory.GPTExample;
 
-internal class Connection
+internal class Connections
 {
 }
 

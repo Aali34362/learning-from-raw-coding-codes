@@ -1,6 +1,4 @@
-﻿using Dumpify;
-
-namespace Factory.FactoryPattern;
+﻿namespace Factory.FactoryPattern;
 
 public class NavigationBar
 {
