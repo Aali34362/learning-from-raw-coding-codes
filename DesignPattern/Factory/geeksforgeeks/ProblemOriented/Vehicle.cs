@@ -1,4 +1,4 @@
-﻿namespace Factory.geeksforgeeks;
+﻿namespace Factory.geeksforgeeks.ProblemOriented;
 
 public abstract class Vehicle
 {
