@@ -1,5 +1,6 @@
 ﻿using Factory.FactoryPattern;
 using Factory.geeksforgeeks.ProblemOriented;
+using Factory.geeksforgeeks.SolutionOriented;
 using Factory.RefactoringGuru;
 
 new NavigationBar();
@@ -29,3 +30,13 @@ Implement Concrete Factories: Implement concrete factory classes (TwoWheelerFact
 Refactor Client: Modify the Client class to accept a VehicleFactory instance instead of directly instantiating vehicles. The client will request a vehicle from the factory, eliminating the need for conditional logic based on vehicle types.
 Enhanced Flexibility: With this approach, adding new types of vehicles is as simple as creating a new factory class for the new vehicle type without modifying existing client code.
  */
+
+IVehicleFactory twoWheelerFactory = new TwoWheelerFactory();
+ClientFP twoWheelerClient = new ClientFP(twoWheelerFactory);
+VehicleFP twoWheeler = twoWheelerClient.getVehicle();
+twoWheeler.printVehicle();
+
+IVehicleFactory fourWheelerFactory = new FourWheelerFactory();
+ClientFP fourWheelerClient = new ClientFP(fourWheelerFactory);
+VehicleFP fourWheeler = fourWheelerClient.getVehicle();
+fourWheeler.printVehicle();
