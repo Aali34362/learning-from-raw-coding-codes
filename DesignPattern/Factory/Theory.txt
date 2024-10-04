@@ -1,34 +1,34 @@
-Factory Pattern
+﻿Factory Pattern
 
 Factory Method is a creational design pattern 
 that provides an interface for creating objects in a superclass, 
 but allows subclasses to alter the type of objects that will be created.
 
 Problem
-Imagine that you�re creating a logistics management application. 
+Imagine that you’re creating a logistics management application. 
 The first version of your app can only handle transportation by trucks, so the bulk of your code lives inside the Truck class.
 After a while, your app becomes pretty popular. 
 Each day you receive dozens of requests from sea transportation companies to incorporate sea logistics into the app.
 Adding a new transportation class to the program causes an issue
-Adding a new class to the program isn�t that simple if the rest of the code is already coupled to existing classes.
+Adding a new class to the program isn’t that simple if the rest of the code is already coupled to existing classes.
 Great news, right? But how about the code? At present, most of your code is coupled to the Truck class. 
 Adding Ships into the app would require making changes to the entire codebase. 
 Moreover, if later you decide to add another type of transportation to the app, 
 you will probably need to make all of these changes again.
 As a result, you will end up with pretty nasty code, riddled with conditionals that switch 
-the app�s behavior depending on the class of transportation objects
+the app’s behavior depending on the class of transportation objects
 
 Solution
 The Factory Method pattern suggests that you replace direct object construction calls 
 (using the new operator) with calls to a special factory method. 
-Don�t worry: the objects are still created via the new operator, but it�s being called from within the factory method. 
+Don’t worry: the objects are still created via the new operator, but it’s being called from within the factory method. 
 Objects returned by a factory method are often referred to as products.
 
 The structure of creator classes
 Subclasses can alter the class of objects being returned by the factory method.
 At first glance, this change may look pointless: we just moved the constructor call from one part of the program to another.
 However, consider this: now you can override the factory method in a subclass and change the class of products being created by the method.
-There�s a slight limitation though: subclasses may return different types of products 
+There’s a slight limitation though: subclasses may return different types of products 
 only if these products have a common base class or interface. 
 Also, the factory method in the base class should have its return type declared as this interface.
 
@@ -42,10 +42,10 @@ The factory method in the RoadLogistics class returns truck objects, whereas the
 The structure of the code after applying the factory method pattern
 As long as all product classes implement a common interface, you can pass their objects to the client code without breaking it.
 
-The code that uses the factory method (often called the client code) doesn�t
+The code that uses the factory method (often called the client code) doesn’t
 see a difference between the actual products returned by various subclasses. 
 The client treats all the products as abstract Transport. 
-The client knows that all transport objects are supposed to have the deliver method, but exactly how it works isn�t important to the client.
+The client knows that all transport objects are supposed to have the deliver method, but exactly how it works isn’t important to the client.
 
 Pros and Cons
  You avoid tight coupling between the creator and the concrete products.
@@ -53,7 +53,7 @@ Pros and Cons
  Open/Closed Principle. You can introduce new types of products into the program without breaking existing client code.
 
  The code may become more complicated since you need to introduce a lot of new subclasses to implement the pattern. 
- The best case scenario is when you�re introducing the pattern into an existing hierarchy of creator classes.
+ The best case scenario is when you’re introducing the pattern into an existing hierarchy of creator classes.
 
  When to use Factory Method Design Pattern?
 Use Factory Method Design Pattern:
@@ -131,11 +131,11 @@ you again and have a good day
 
 ---
 You're right! In this particular implementation, we don't need a separate IDatabaseConnection interface with Connect() and Disconnect() methods. Instead, we directly use the IDatabaseFactory interface to provide an instance of ApplicationDbContext because DbContext already encapsulates the logic for connecting and interacting with the database.
-Why We Don�t Need IDatabaseConnection
+Why We Don’t Need IDatabaseConnection
 
     Entity Framework Core Integration: DbContext in Entity Framework Core already manages the lifecycle of the database connection. When you create or use DbContext, it opens a connection to the database automatically. Similarly, when the DbContext is disposed, it closes the connection.
     Simplicity: Introducing an extra interface like IDatabaseConnection in this scenario would just duplicate functionality, making the code more complex without adding value.
-    Direct Interaction: IDatabaseFactory provides the direct entry point to create and use DbContext instances, so we don�t need an intermediary interface for the connection.
+    Direct Interaction: IDatabaseFactory provides the direct entry point to create and use DbContext instances, so we don’t need an intermediary interface for the connection.
 
 Modified Version without IDatabaseConnection
 
@@ -151,7 +151,7 @@ Here's a simplified view of how the pattern works, focusing on the existing clas
 
 Revised Explanation of the Implementation
 
-The existing implementation I provided earlier uses the Factory Pattern for managing DbContext creation and interaction. Here�s a summary of the process:
+The existing implementation I provided earlier uses the Factory Pattern for managing DbContext creation and interaction. Here’s a summary of the process:
 
     Factory Pattern Focus:
         The goal of the factory pattern here is to abstract the creation of DbContext objects for different databases.
@@ -183,7 +183,7 @@ If the project involves direct, low-level control of connections (e.g., opening 
 
 The OnConfiguring(DbContextOptionsBuilder optionsBuilder) method in DbContext is typically used to configure the database connection or to set options like logging, lazy loading, or query tracking.
 
-In most scenarios, you do not need to configure anything manually inside OnConfiguring when you�re using dependency injection or if you�re passing options through the constructor (like in the example above). However, if you're not using dependency injection, or if you want to programmatically set up the database connection inside the DbContext class itself, this method is where you would specify those options.
+In most scenarios, you do not need to configure anything manually inside OnConfiguring when you’re using dependency injection or if you’re passing options through the constructor (like in the example above). However, if you're not using dependency injection, or if you want to programmatically set up the database connection inside the DbContext class itself, this method is where you would specify those options.
 
 Here's how you can use the OnConfiguring method to configure the database provider and connection string.
 Example 1: Setting Up a SQL Server Connection
@@ -296,7 +296,7 @@ namespace DatabaseFactoryExample.Contexts
 
 Final Thoughts
 
-    If you�re using a pattern where DbContext options are provided through a constructor (like dependency injection), it�s common to leave OnConfiguring empty or use it as a fallback configuration.
+    If you’re using a pattern where DbContext options are provided through a constructor (like dependency injection), it’s common to leave OnConfiguring empty or use it as a fallback configuration.
     The OnConfiguring method is particularly useful in console applications or scenarios where you don't use dependency injection, making it flexible for configuring the database context programmatically.
 
 
@@ -422,3 +422,559 @@ Real-World Use Cases
     Dependency Injection Containers: Managing the instantiation of services and objects in a loosely coupled manner.
 
 The Factory Method Pattern is a fundamental design pattern that helps you manage object creation flexibly and effectively in many scenarios.
+
+----
+
+Yes, the Factory Pattern is a great fit for creating and managing different types of database connections. Using the Factory Pattern in such scenarios allows you to define a common interface for interacting with different databases, and then create concrete implementations for each database type (e.g., MongoDB, MySQL, SQL Server, PostgreSQL, etc.).
+Benefits of Using the Factory Pattern for Database Connections
+
+    Abstraction: Client code interacts with a common interface, without worrying about the underlying database type.
+    Flexibility: You can switch databases by simply changing the factory implementation, without modifying the client code.
+    Extensibility: Adding support for new databases (e.g., Oracle, SQLite) requires only a new factory and connection implementation, leaving the existing codebase untouched.
+
+Implementation Example in C#
+
+Let’s walk through an example where we implement a factory pattern for creating database connections.
+
+    Define a Common Database Interface: This interface represents the contract that all database connection types should follow.
+
+    csharp
+
+public interface IDatabaseConnection
+{
+    void Connect();
+    void Disconnect();
+}
+
+Create Concrete Implementations for Different Databases: Implement the IDatabaseConnection interface for each database type, providing specific connection logic.
+
+csharp
+
+public class MySqlConnection : IDatabaseConnection
+{
+    public void Connect()
+    {
+        Console.WriteLine("Connecting to MySQL Database...");
+        // Actual connection logic goes here
+    }
+
+    public void Disconnect()
+    {
+        Console.WriteLine("Disconnecting from MySQL Database...");
+    }
+}
+
+public class SqlServerConnection : IDatabaseConnection
+{
+    public void Connect()
+    {
+        Console.WriteLine("Connecting to SQL Server Database...");
+        // Actual connection logic goes here
+    }
+
+    public void Disconnect()
+    {
+        Console.WriteLine("Disconnecting from SQL Server Database...");
+    }
+}
+
+public class MongoDbConnection : IDatabaseConnection
+{
+    public void Connect()
+    {
+        Console.WriteLine("Connecting to MongoDB Database...");
+        // Actual connection logic goes here
+    }
+
+    public void Disconnect()
+    {
+        Console.WriteLine("Disconnecting from MongoDB Database...");
+    }
+}
+
+// You can create more classes like PostgreSQLConnection, OracleConnection, etc.
+
+Define a Factory Interface: Create an interface that declares the factory method for creating database connections.
+
+csharp
+
+public interface IDatabaseFactory
+{
+    IDatabaseConnection CreateConnection();
+}
+
+Create Concrete Factories for Each Database: Each factory will create and return an instance of the specific database connection type.
+
+csharp
+
+public class MySqlConnectionFactory : IDatabaseFactory
+{
+    public IDatabaseConnection CreateConnection()
+    {
+        return new MySqlConnection();
+    }
+}
+
+public class SqlServerConnectionFactory : IDatabaseFactory
+{
+    public IDatabaseConnection CreateConnection()
+    {
+        return new SqlServerConnection();
+    }
+}
+
+public class MongoDbConnectionFactory : IDatabaseFactory
+{
+    public IDatabaseConnection CreateConnection()
+    {
+        return new MongoDbConnection();
+    }
+}
+
+// Additional factories for other databases can be created similarly.
+
+Use the Factory in Client Code: The client code can now choose which database connection to use by selecting the appropriate factory, without needing to know the details of each connection type.
+
+csharp
+
+    class Program
+    {
+        static void Main()
+        {
+            // Choose the desired database connection by selecting the factory
+            IDatabaseFactory factory = new MySqlConnectionFactory();
+            // IDatabaseFactory factory = new SqlServerConnectionFactory();
+            // IDatabaseFactory factory = new MongoDbConnectionFactory();
+
+            // Create the connection using the factory
+            IDatabaseConnection connection = factory.CreateConnection();
+            
+            // Use the connection
+            connection.Connect();
+            connection.Disconnect();
+        }
+    }
+
+Explanation
+
+    Common Interface (IDatabaseConnection): Defines the contract for all database connections with Connect() and Disconnect() methods.
+    Concrete Implementations (MySqlConnection, SqlServerConnection, MongoDbConnection): Each class provides its specific logic for connecting and disconnecting to a particular type of database.
+    Factory Interface (IDatabaseFactory): Declares the method CreateConnection() that returns an IDatabaseConnection.
+    Concrete Factories (MySqlConnectionFactory, SqlServerConnectionFactory, MongoDbConnectionFactory): Each factory creates and returns an instance of the corresponding database connection class.
+    Client Code (Program Class): Chooses a specific factory, uses it to create a database connection, and then uses that connection to perform operations.
+
+Advantages of This Approach
+
+    Single Responsibility Principle: Each factory is responsible for creating only one type of database connection.
+    Open/Closed Principle: The system is open for extension but closed for modification. You can add new database connection types without modifying existing code.
+    Ease of Testing: You can easily create mock factories and connections for unit testing.
+
+Considerations
+
+    Configuration Management: Consider using a configuration file (e.g., appsettings.json) or dependency injection to choose the factory dynamically based on settings.
+    Performance: If connection objects are expensive to create, consider implementing a connection pool or caching mechanism.
+
+The Factory Pattern is a robust solution for managing multiple database connections, making your code modular, extensible, and easy to maintain.
+
+-------
+
+Let's enhance the previous example with a more realistic scenario, including actual database models and a DbContext using Entity Framework Core to interact with relational databases like SQL Server and MySQL.
+
+In this example, we will create a User model and use the Factory Pattern along with Entity Framework Core’s DbContext to establish connections to different databases.
+Prerequisites:
+
+    Entity Framework Core: Make sure you have Entity Framework Core installed in your project. You can install it via NuGet:
+
+    bash
+
+dotnet add package Microsoft.EntityFrameworkCore
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+dotnet add package Microsoft.EntityFrameworkCore.MySql
+
+Project Structure: Ensure that your project has the following structure:
+
+mathematica
+
+    /DatabaseFactoryExample
+    ├── Models
+    │   └── User.cs
+    ├── Contexts
+    │   └── ApplicationDbContext.cs
+    ├── Factories
+    │   └── IDatabaseFactory.cs
+    │   └── SqlServerFactory.cs
+    │   └── MySqlFactory.cs
+    └── Program.cs
+
+Step-by-Step Implementation
+1. Define the User Model
+
+Create a User class inside the Models folder.
+
+csharp
+
+// Models/User.cs
+public class User
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public string Email { get; set; }
+}
+
+2. Define the ApplicationDbContext Class
+
+Create a ApplicationDbContext class that inherits from DbContext in the Contexts folder. This will serve as our database context for managing entity classes.
+
+csharp
+
+// Contexts/ApplicationDbContext.cs
+using Microsoft.EntityFrameworkCore;
+using System;
+
+namespace DatabaseFactoryExample.Contexts
+{
+    public class ApplicationDbContext : DbContext
+    {
+        public DbSet<User> Users { get; set; }
+
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+        {
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            // Configuration logic can go here, if needed.
+        }
+    }
+}
+
+3. Define the IDatabaseFactory Interface
+
+Create an interface for the database factories in the Factories folder.
+
+csharp
+
+// Factories/IDatabaseFactory.cs
+using DatabaseFactoryExample.Contexts;
+using Microsoft.EntityFrameworkCore;
+
+namespace DatabaseFactoryExample.Factories
+{
+    public interface IDatabaseFactory
+    {
+        ApplicationDbContext CreateDbContext();
+    }
+}
+
+4. Implement Concrete Factories for SQL Server and MySQL
+
+Create factory classes for each database type, which will set up the appropriate connection strings and options.
+
+csharp
+
+// Factories/SqlServerFactory.cs
+using DatabaseFactoryExample.Contexts;
+using Microsoft.EntityFrameworkCore;
+
+namespace DatabaseFactoryExample.Factories
+{
+    public class SqlServerFactory : IDatabaseFactory
+    {
+        private readonly string _connectionString;
+
+        public SqlServerFactory(string connectionString)
+        {
+            _connectionString = connectionString;
+        }
+
+        public ApplicationDbContext CreateDbContext()
+        {
+            var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
+            optionsBuilder.UseSqlServer(_connectionString);
+            return new ApplicationDbContext(optionsBuilder.Options);
+        }
+    }
+}
+
+// Factories/MySqlFactory.cs
+using DatabaseFactoryExample.Contexts;
+using Microsoft.EntityFrameworkCore;
+
+namespace DatabaseFactoryExample.Factories
+{
+    public class MySqlFactory : IDatabaseFactory
+    {
+        private readonly string _connectionString;
+
+        public MySqlFactory(string connectionString)
+        {
+            _connectionString = connectionString;
+        }
+
+        public ApplicationDbContext CreateDbContext()
+        {
+            var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
+            optionsBuilder.UseMySql(_connectionString, ServerVersion.AutoDetect(_connectionString));
+            return new ApplicationDbContext(optionsBuilder.Options);
+        }
+    }
+}
+
+5. Use the Factory in the Main Program
+
+Implement the Program class to use the factory to connect to the desired database, perform CRUD operations, and interact with the User table.
+
+csharp
+
+// Program.cs
+using DatabaseFactoryExample.Contexts;
+using DatabaseFactoryExample.Factories;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Linq;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        // Use the appropriate factory based on your configuration or input.
+        IDatabaseFactory factory;
+
+        // For SQL Server
+        // Make sure to replace with your actual SQL Server connection string
+        factory = new SqlServerFactory("Server=localhost;Database=TestDB;User Id=sa;Password=your_password;");
+        
+        // For MySQL
+        // Uncomment this line and comment out the SqlServerFactory line to use MySQL instead.
+        // Make sure to replace with your actual MySQL connection string
+        // factory = new MySqlFactory("Server=localhost;Database=TestDB;User=root;Password=your_password;");
+
+        // Create DbContext using the factory
+        using var dbContext = factory.CreateDbContext();
+
+        // Apply migrations and create the database if it doesn't exist
+        dbContext.Database.Migrate();
+
+        // Perform database operations
+        PerformDatabaseOperations(dbContext);
+    }
+
+    private static void PerformDatabaseOperations(ApplicationDbContext dbContext)
+    {
+        // Add a new user
+        var user = new User
+        {
+            Name = "John Doe",
+            Email = "johndoe@example.com"
+        };
+        dbContext.Users.Add(user);
+        dbContext.SaveChanges();
+
+        // Retrieve and display all users
+        var users = dbContext.Users.ToList();
+        Console.WriteLine("List of Users:");
+        foreach (var u in users)
+        {
+            Console.WriteLine($"Id: {u.Id}, Name: {u.Name}, Email: {u.Email}");
+        }
+
+        // Update the user's email
+        user.Email = "john.doe@example.com";
+        dbContext.Users.Update(user);
+        dbContext.SaveChanges();
+
+        // Delete the user
+        dbContext.Users.Remove(user);
+        dbContext.SaveChanges();
+    }
+}
+
+Explanation
+
+    Model (User): Represents a user entity with basic properties such as Id, Name, and Email.
+    Database Context (ApplicationDbContext): Manages the Users table using Entity Framework Core.
+    Factory Interface (IDatabaseFactory): Declares the CreateDbContext() method for creating a DbContext.
+    Concrete Factories (SqlServerFactory, MySqlFactory): Provide the logic to configure and create DbContext objects for SQL Server and MySQL databases.
+    Program: Uses the chosen factory to create a DbContext and perform CRUD operations on the User table.
+
+Considerations
+
+    Configuration Management: Use appsettings.json or environment variables to dynamically choose the factory or connection strings.
+    Dependency Injection: In a larger application, use Dependency Injection to inject the appropriate factory into services or controllers.
+    Database-Specific Features: Each database might have unique features (e.g., stored procedures, JSON data types in PostgreSQL). Consider how these will be handled in a generic factory implementation.
+
+This implementation provides a complete, working example of how to use the Factory Pattern to manage different database connections and interactions in a real-world C# application using Entity Framework Core.
+
+
+-----
+
+You're right! In this particular implementation, we don't need a separate IDatabaseConnection interface with Connect() and Disconnect() methods. Instead, we directly use the IDatabaseFactory interface to provide an instance of ApplicationDbContext because DbContext already encapsulates the logic for connecting and interacting with the database.
+Why We Don’t Need IDatabaseConnection
+
+    Entity Framework Core Integration: DbContext in Entity Framework Core already manages the lifecycle of the database connection. When you create or use DbContext, it opens a connection to the database automatically. Similarly, when the DbContext is disposed, it closes the connection.
+    Simplicity: Introducing an extra interface like IDatabaseConnection in this scenario would just duplicate functionality, making the code more complex without adding value.
+    Direct Interaction: IDatabaseFactory provides the direct entry point to create and use DbContext instances, so we don’t need an intermediary interface for the connection.
+
+Modified Version without IDatabaseConnection
+
+Here's a simplified view of how the pattern works, focusing on the existing classes:
+
+    IDatabaseFactory Interface:
+        Responsible for creating an instance of ApplicationDbContext.
+        No need for additional methods like Connect() and Disconnect().
+
+    Concrete Factories (SqlServerFactory, MySqlFactory):
+        Create and configure the ApplicationDbContext instance using the appropriate connection string and provider.
+        No direct connection handling is necessary because DbContext manages it.
+
+Revised Explanation of the Implementation
+
+The existing implementation I provided earlier uses the Factory Pattern for managing DbContext creation and interaction. Here’s a summary of the process:
+
+    Factory Pattern Focus:
+        The goal of the factory pattern here is to abstract the creation of DbContext objects for different databases.
+        We use IDatabaseFactory to define a common way of creating DbContext instances, and each concrete factory class (e.g., SqlServerFactory, MySqlFactory) implements this interface to return the appropriate ApplicationDbContext.
+
+    No Additional Connection Interface:
+        Since we directly interact with ApplicationDbContext and use it to perform CRUD operations, an additional connection interface (like IDatabaseConnection) would be redundant.
+
+    DbContext Management:
+        DbContext in Entity Framework Core manages its own connection state and lifecycles. When dbContext.Database.Migrate() or dbContext.SaveChanges() is called, DbContext will automatically establish a connection, perform the operation, and then close it as necessary.
+
+Revised Code Overview
+
+With the explanation above, the existing code structure is optimal for managing database interactions using the Factory Pattern. To summarize the key elements:
+
+    Interface: IDatabaseFactory
+        Provides the CreateDbContext() method that returns an ApplicationDbContext.
+
+    Concrete Factories: SqlServerFactory and MySqlFactory
+        Implement IDatabaseFactory to provide specific configurations for different databases.
+
+    Client Code:
+        The client code uses IDatabaseFactory to create an ApplicationDbContext and perform operations like Add, Update, and Delete on the database.
+
+Final Note
+
+If the project involves direct, low-level control of connections (e.g., opening and closing connections manually, handling connection pooling, etc.), we could consider adding an IDatabaseConnection interface. However, for a typical application using Entity Framework Core, managing the DbContext directly is more appropriate and aligns with the best practices of EF Core.
+
+-----
+
+The OnConfiguring(DbContextOptionsBuilder optionsBuilder) method in DbContext is typically used to configure the database connection or to set options like logging, lazy loading, or query tracking.
+
+In most scenarios, you do not need to configure anything manually inside OnConfiguring when you’re using dependency injection or if you’re passing options through the constructor (like in the example above). However, if you're not using dependency injection, or if you want to programmatically set up the database connection inside the DbContext class itself, this method is where you would specify those options.
+
+Here's how you can use the OnConfiguring method to configure the database provider and connection string.
+Example 1: Setting Up a SQL Server Connection
+
+csharp
+
+protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+{
+    if (!optionsBuilder.IsConfigured)
+    {
+        optionsBuilder.UseSqlServer("Server=localhost;Database=TestDB;User Id=sa;Password=your_password;");
+    }
+}
+
+Explanation:
+
+    !optionsBuilder.IsConfigured: This checks if the optionsBuilder has already been configured. If it has not been configured, then it proceeds to configure it.
+    UseSqlServer: Specifies SQL Server as the provider and sets up the connection string.
+
+Example 2: Setting Up a MySQL Connection
+
+csharp
+
+protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+{
+    if (!optionsBuilder.IsConfigured)
+    {
+        optionsBuilder.UseMySql("Server=localhost;Database=TestDB;User=root;Password=your_password;", ServerVersion.AutoDetect("Server=localhost;Database=TestDB;User=root;Password=your_password;"));
+    }
+}
+
+Explanation:
+
+    UseMySql: Specifies MySQL as the provider. Notice that ServerVersion.AutoDetect() is used to determine the server version automatically based on the connection string.
+
+Example 3: Using SQLite
+
+If you want to use SQLite, you can configure it like this:
+
+csharp
+
+protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+{
+    if (!optionsBuilder.IsConfigured)
+    {
+        optionsBuilder.UseSqlite("Data Source=TestDB.db");
+    }
+}
+
+Explanation:
+
+    UseSqlite: Specifies SQLite as the provider with a local file TestDB.db as the database.
+
+Example 4: Logging and Additional Options
+
+You can also enable logging or other options inside the OnConfiguring method:
+
+csharp
+
+protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+{
+    if (!optionsBuilder.IsConfigured)
+    {
+        // Configuring SQL Server connection
+        optionsBuilder.UseSqlServer("Server=localhost;Database=TestDB;User Id=sa;Password=your_password;")
+                      .EnableSensitiveDataLogging()    // Enables logging of sensitive data
+                      .EnableDetailedErrors();         // Enables detailed error messages
+    }
+}
+
+When to Use OnConfiguring
+
+    Programmatic Configuration: Use OnConfiguring if you want to configure the DbContext programmatically without passing options through the constructor.
+    Conditional Configuration: If the configuration might vary based on the context (e.g., different connection strings for development and production), you can put conditional logic in OnConfiguring.
+
+Important Note
+
+    If you're using dependency injection to inject DbContext and configure options externally (e.g., in Startup.cs for an ASP.NET Core application), avoid using OnConfiguring as it could override externally configured options.
+    If OnConfiguring is used alongside dependency injection, it's important to include a check like !optionsBuilder.IsConfigured to prevent overwriting already-configured options.
+
+Full Example with OnConfiguring Implementation
+
+csharp
+
+// Contexts/ApplicationDbContext.cs
+using Microsoft.EntityFrameworkCore;
+
+namespace DatabaseFactoryExample.Contexts
+{
+    public class ApplicationDbContext : DbContext
+    {
+        public DbSet<User> Users { get; set; }
+
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+        {
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                // Configure the database here if options are not already configured
+                optionsBuilder.UseSqlServer("Server=localhost;Database=TestDB;User Id=sa;Password=your_password;")
+                              .EnableSensitiveDataLogging()    // Optional: log sensitive data like query parameters
+                              .EnableDetailedErrors();         // Optional: include detailed error messages
+            }
+        }
+    }
+}
+
+Final Thoughts
+
+    If you’re using a pattern where DbContext options are provided through a constructor (like dependency injection), it’s common to leave OnConfiguring empty or use it as a fallback configuration.
+    The OnConfiguring method is particularly useful in console applications or scenarios where you don't use dependency injection, making it flexible for configuring the database context programmatically.
+
