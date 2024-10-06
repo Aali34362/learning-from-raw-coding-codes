@@ -1,12 +1,13 @@
-﻿using AbstractFactory.Model;
+﻿using AbstractFactory.GPTExample.Contexts;
+using AbstractFactory.GPTExample.Model;
 
-namespace AbstractFactory.GPTExample;
+namespace AbstractFactory.GPTExample.Repositories;
 
-internal class MySqlUserRepository : IUserRepository
+public class SqlServerUserRepository : IUserRepository
 {
     private readonly ApplicationDbContext _dbContext;
 
-    public MySqlUserRepository(ApplicationDbContext dbContext)
+    public SqlServerUserRepository(ApplicationDbContext dbContext)
     {
         _dbContext = dbContext;
     }

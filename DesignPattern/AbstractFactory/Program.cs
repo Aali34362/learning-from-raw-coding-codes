@@ -1,7 +1,9 @@
 ﻿using AbstractFactory.AbstractFactoryPattern;
 using AbstractFactory.geeksforgeeks;
-using AbstractFactory.GPTExample;
-using AbstractFactory.Model;
+using AbstractFactory.GPTExample.Contexts;
+using AbstractFactory.GPTExample.Factories;
+using AbstractFactory.GPTExample.Model;
+using AbstractFactory.GPTExample.Repositories;
 using AbstractFactory.RefactoringGuru;
 
 

@@ -1,6 +1,6 @@
-﻿using AbstractFactory.Model;
+﻿using AbstractFactory.GPTExample.Model;
 
-namespace AbstractFactory.GPTExample;
+namespace AbstractFactory.GPTExample.Repositories;
 
 public interface IUserRepository
 {

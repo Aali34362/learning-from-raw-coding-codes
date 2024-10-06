@@ -1,6 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AbstractFactory.GPTExample.Contexts;
+using AbstractFactory.GPTExample.Repositories;
+using Microsoft.EntityFrameworkCore;
 
-namespace AbstractFactory.GPTExample;
+namespace AbstractFactory.GPTExample.Factories;
 
 public class MySqlFactory : IDatabaseFactory
 {

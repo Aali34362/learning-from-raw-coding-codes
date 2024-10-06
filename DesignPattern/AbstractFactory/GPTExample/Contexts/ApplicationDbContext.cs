@@ -1,7 +1,7 @@
-﻿using AbstractFactory.Model;
+﻿using AbstractFactory.GPTExample.Model;
 using Microsoft.EntityFrameworkCore;
 
-namespace AbstractFactory.GPTExample;
+namespace AbstractFactory.GPTExample.Contexts;
 
 public class ApplicationDbContext : DbContext
 {

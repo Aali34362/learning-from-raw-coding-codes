@@ -179,11 +179,17 @@ mathematica
 └── Program.cs
 
 Key Points of the Abstract Factory Pattern
+Abstract Factory Interface (IDatabaseFactory): 
+Defines a set of methods for creating families of related objects.
 
-    Abstract Factory Interface (IDatabaseFactory): Defines a set of methods for creating families of related objects.
-    Concrete Factory Classes (SqlServerFactory, MySqlFactory): Implement the methods to create concrete products (e.g., SqlServerUserRepository, ApplicationDbContext).
-    Abstract Products (IUserRepository, ApplicationDbContext): Define interfaces or abstract classes that represent the product types.
-    Concrete Products (SqlServerUserRepository, MySqlUserRepository): Implement the abstract products for each concrete factory.
+Concrete Factory Classes (SqlServerFactory, MySqlFactory): 
+Implement the methods to create concrete products (e.g., SqlServerUserRepository, ApplicationDbContext).
+
+Abstract Products (IUserRepository, ApplicationDbContext): 
+Define interfaces or abstract classes that represent the product types.
+
+Concrete Products (SqlServerUserRepository, MySqlUserRepository): 
+Implement the abstract products for each concrete factory.
 
 
 

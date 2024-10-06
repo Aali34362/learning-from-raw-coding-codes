@@ -1,4 +1,4 @@
-﻿namespace AbstractFactory.Model;
+﻿namespace AbstractFactory.GPTExample.Model;
 
 public class User
 {
