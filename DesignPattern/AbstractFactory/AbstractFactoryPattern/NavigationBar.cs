@@ -2,13 +2,13 @@
 
 namespace AbstractFactory.AbstractFactoryPattern;
 
-////public class NavigationBar
-////{
-////    //public NavigationBar(Apple factory) => factory.CreateButton();
-////    public NavigationBar(IUIFactory factory) => factory.CreateButton();
-////}
+public class NavigationBar
+{
+    //public navigationbar(apple factory) => factory.createbutton();
+    public NavigationBar(IUIFactory factory) => factory.CreateButton();
+}
 
-public class NavigationBar : Element
+public class NavigationBarFactoryMethod : Element
 {
     protected override Button CreateButton()
     {

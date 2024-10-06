@@ -2,13 +2,13 @@
 
 namespace AbstractFactory.AbstractFactoryPattern;
 
-////public class DropDownMenu
-////{
-////    //public DropDownMenu(Apple factory) => factory.CreateButton();
-////    public DropDownMenu(IUIFactory factory) => factory.CreateButton();
-////}
+public class DropDownMenu
+{
+    //public DropDownMenu(Apple factory) => factory.CreateButton();
+    public DropDownMenu(IUIFactory factory) => factory.CreateButton();
+}
 
-public class DropDownMenu : Element
+public class DropDownMenuFactoryMethod : Element
 {
     protected override Button CreateButton()
     {
