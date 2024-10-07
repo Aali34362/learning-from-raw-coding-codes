@@ -7,7 +7,6 @@ namespace Builder.GPTExample;
 //Create the CarBuilder Interface
 //The ICarBuilder interface defines the blueprint for building various parts of the car.
 //Each method returns the builder itself, allowing us to chain method calls (fluent interface).
-
 public interface ICarBuilder
 {
     ICarBuilder SetModel(string model);
