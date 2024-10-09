@@ -30,5 +30,6 @@ public sealed class Singleton
     public void someBusinessLogic()
     {
         // ...
+       Console.WriteLine("Something is Done.");
     }
 }
