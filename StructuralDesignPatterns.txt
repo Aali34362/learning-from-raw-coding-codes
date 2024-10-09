@@ -1,0 +1,98 @@
+Structural Design Patterns are concerned with how classes and objects are composed to form 
+larger structures. 
+Structural class patterns use inheritance to compose interfaces or implementations. 
+
+Consider how multiple inheritances mix two or more classes into one. 
+The result is a class that combines the properties of its parent classes.
+
+There are two recurring themes in these patterns:
+This pattern is particularly useful for making independently developed class libraries work together.
+Structural Design Patterns describe ways to compose objects to realize new functionality. 
+The added flexibility of object composition comes from the ability to change the composition 
+at run-time, which is impossible with static class composition.
+
+Example for Structural Design Patterns
+Consider an example, a drawing editor that lets users draw and arrange graphical elements (lines, polygons, text, etc.) into pictures and diagrams. The drawing editor’s key abstraction is the graphical object, which has an editable shape and can draw itself.
+
+The interface for graphical objects is defined by an abstract class called Shape. The editor defines a subclass of the Shape for each kind of graphical object: a LineShape class for lines, a PolygonShape class for polygons, and so forth.
+
+Types of Structural Design Patterns:
+Adapter Method Design Patterns
+Bridge Method Design Patterns
+Composite Method Design Patterns
+Decorator Method Design Patterns
+Facade Method Design Patterns
+Flyweight Method Design Patterns
+Proxy Method Design Patterns
+
+
+Adapter Method Design Patterns:
+Adapter Method or Adapter Design Patterns also knows as wrapper. 
+It convert the interface of a class into another interface clients expect. 
+Adapter lets classes work together that couldn’t otherwise because of incompatible interfaces.
+
+When to use Adapter Method
+You want to use an existing class, and its interface does not match the one you need.
+You want to create a reusable class that cooperates with unrelated orunforeseen classes, 
+that is, classes that don’t necessarily have compatible interfaces.
+(object adapter only) you need to use several existing subclasses, 
+but it’s unpractical to adapt their interface by subclassing every one. 
+An object adapter can adapt the interface of its parent class.
+Bridge Method Design Patterns
+Bridge Method or Bridge Design Patterns also known as Handle/Body. 
+Decouple an abstraction from its implementation so that the two can vary independently.
+When to use Bridge Method
+You want to avoid a permanent binding between an abstraction and its implementation. 
+This might be the case,for example,when the implementation must be selected or switched at run-time.
+Both the abstractions and their implementations should be extensible by subclassing. 
+In this case, the Bridge pattern lets you combine the different abstractions and 
+implementations and extend them independently.
+Changes in the implementation of an abstraction should have no impact on clients; that is, 
+their code should not have to be recompiled.
+You want to hide the implementation of an abstraction completely from clients.
+You have a proliferation of classes as shown earlier in the first Motivation diagram. 
+Such a class hierarchy indicates the need for splitting an object into two parts. Rumbaugh uses the term “nested generalizations” to refer to such class hierarchies.
+You want to share an implementation among multiple objects(perhaps using reference counting), and this fact should be hidden from the client.
+
+
+Composite Method Design Patterns
+Composite Method or Composite Design Patterns it compose objects into tree structures to represent part-whole hierarchies. Composite lets clients treat individual objects and compositions of objects uniformly.
+When to use Composite Method
+You want to represent part-whole hierarchies of objects.
+You want clients to be able to ignore the difference between compositions of objects and individual objects.Clients will treat all objectsin the composite structure uniformly.
+
+Decorator Method Design Patterns
+Decorator Method or Decorator Design Patterns also known as wrapper, it is attach with additional responsibilities to an object dynamically. Decorators provide a flexible alternative to subclassing for extending functionality.
+When to use Decorator Method
+To add responsibilities to individual objects dynamically and transparently, that is, without affecting other objects.
+For responsibilities that can be withdrawn.
+When extension by subclassing is impractical. Sometimes a large number of independent extensions are possible and would produce an explosion of subclasses to support every combination. Or a class definition maybe hidden or otherwise unavailable for subclassing.
+
+Facade Method Design Patterns
+Facade method or Facade Design Pattern it provide a unified interface to a set of interfaces in a subsystem. Facade defines a higher-level interface that makes the subsystem easier to use.
+When to use Facade Method
+You want to provide a simple interface to a complex subsystem. Subsystems often get more complex as they evolve. Most patterns, when applied, result in more and smaller classes. This makes the subsystem more reusable and easier to customize, but it also becomes harder to use for clients that don’t need to customize it. A facade can provide a simple default view of the subsystem that is good enough for most clients. Only clients needing more customizability will need to look beyond the facade.
+There are many dependencies between clients and theimplementation classes of an abstraction.Introduce a facade to decouple the subsystem from clients and other subsystems, thereby promoting subsystem independence and portability.
+You want to layer your subsystems. Use a facade to define an entry point to each subsystem level. If subsystems are dependent, then you can simplify the dependencies between them by making them communicate with each other solely through their facades.
+
+Flyweight Method Design Patterns
+Flyweight method or Flyweight Design Patterns, it is used to support large numbers of fine-grained objects efficiently.
+When to use Flyweight Method
+The Flyweight pattern’s effectiveness depends heavily on how and where it’s used. Apply the Flyweight pattern when allof the following are:
+An application uses a large number of objects.
+Storage costs are high because ofthe sheer quantity of objects.
+Most object state canbe made extrinsic.
+Many groups of objects may be replaced by relatively few shared objects once extrinsic state is removed.
+The application doesn’t depend on object identity. Since flyweight objects may be shared, identity tests will return true for conceptually distinct objects.
+
+Proxy Method Design Patterns
+Proxy Method or Proxy Design Pattern also known as Surrogate, it provide a surrogate or placeholder for another object to control access to it.
+When to use Proxy Method
+Proxy method is applicable whenever there is a need for a more versatile or sophisticated reference to an object than a simple pointer. Here are several common situations in which the Proxy pattern is applicable:
+A remote proxy provides a local representative for an object in a different address space.
+A virtual proxy creates expensive objects on demand.
+A protection proxy controls access to the original object. Protection proxies are useful when objects should have different access rights
+A smart reference is a replacement for a bare pointer that performs additional actions when an object is accessed.
+
+
+

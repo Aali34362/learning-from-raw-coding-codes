@@ -37,7 +37,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DistributedCaching_Redis_Go
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DesignPatterns", "DesignPatterns", "{1CC3F595-B132-474B-AA8A-788B2AE0EB4D}"
 	ProjectSection(SolutionItems) = preProject
-		Theory.txt = Theory.txt
+		MainTheory.txt = MainTheory.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ASP.NETCoreBeginnerTutorials", "ASP.NETCoreBeginnerTutorials", "{030434A8-D502-48B5-AA31-ACADF1B40C66}"
@@ -61,6 +61,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Basic_Authentication_Authorization", "Authentication_Authorization\Basic_Authentication_Authorization\Basic_Authentication_Authorization.csproj", "{ECFE09F2-68E3-4F9E-BF94-30709C57B40F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CreationalPatterns", "CreationalPatterns", "{3C83DCC4-B899-4E27-A7A0-5DF63C049476}"
+	ProjectSection(SolutionItems) = preProject
+		CreationalPatternTheory.txt = CreationalPatternTheory.txt
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prototype", "DesignPattern\CreationalPatterns\Prototype\Prototype.csproj", "{C39F96FB-A510-4EE6-96E4-77AD1189FA8A}"
 EndProject
@@ -71,6 +74,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbstractFactory", "DesignPattern\CreationalPatterns\AbstractFactory\AbstractFactory.csproj", "{4F247CF5-C374-4D0A-B875-3C3C25CDEA8C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Singleton", "DesignPattern\CreationalPatterns\Singleton\Singleton.csproj", "{A683B1B7-9AB1-4948-91CC-991794707780}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "StructuralPatterns", "StructuralPatterns", "{06B7863E-36FC-4C86-9A20-6CFC64BCA52E}"
+	ProjectSection(SolutionItems) = preProject
+		StructuralDesignPatterns.txt = StructuralDesignPatterns.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -164,6 +172,7 @@ Global
 		{28D28615-C76B-43E4-8E60-77008DAA5FB4} = {3C83DCC4-B899-4E27-A7A0-5DF63C049476}
 		{4F247CF5-C374-4D0A-B875-3C3C25CDEA8C} = {3C83DCC4-B899-4E27-A7A0-5DF63C049476}
 		{A683B1B7-9AB1-4948-91CC-991794707780} = {3C83DCC4-B899-4E27-A7A0-5DF63C049476}
+		{06B7863E-36FC-4C86-9A20-6CFC64BCA52E} = {1CC3F595-B132-474B-AA8A-788B2AE0EB4D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {47F9E876-1C24-4093-9D33-B561A3731B32}
