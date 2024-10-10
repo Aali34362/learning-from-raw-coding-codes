@@ -13,6 +13,16 @@ public class ObjectAdapter : IUserNotificationService
     }
     public Task NotifyUser(string userId, string message)
     {
-        return client.SendEmailAsync(new SendGridMessage());
+        // Placeholder logic to create and send an email using SendGrid
+        Console.WriteLine($"ObjectAdapter: Notifying user {userId} with message: {message}");
+        var msg = new SendGridMessage
+        {
+            From = new EmailAddress("noreply@domain.com", "Notifier"),
+            Subject = "Notification",
+            PlainTextContent = message,
+            HtmlContent = $"<strong>{message}</strong>"
+        };
+        msg.AddTo(new EmailAddress($"{userId}@domain.com"));
+        return client.SendEmailAsync(msg);
     }
 }

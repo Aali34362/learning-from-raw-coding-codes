@@ -11,7 +11,8 @@ public class BitcoinEvent
 
     public Task Execute()
     {
-        // other work here
-        return userNF.NotifyUser("", "");
+        // Additional work related to BitcoinEvent can be done here.
+        Console.WriteLine("Executing Bitcoin Event...");
+        return userNF.NotifyUser("user1", "Bitcoin price increased!");
     }
 }
