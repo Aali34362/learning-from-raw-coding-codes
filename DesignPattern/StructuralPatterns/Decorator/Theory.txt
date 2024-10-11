@@ -77,4 +77,44 @@ The client code must be responsible for creating decorators and composing them i
  The initial configuration code of layers might look pretty ugly.
 
 
+ ----------------
 
+ The Decorator Design Pattern is a structural design pattern that allows behavior to be added to individual objects dynamically, without affecting the behavior of other objects from the same class. It involves creating a set of decorator classes that are used to wrap concrete components.
+
+ What is a Decorator Design Pattern?
+The Decorator Design Pattern is a structural design pattern used in software development. It allows behavior to be added to individual objects, dynamically, without affecting the behavior of other objects from the same class. This pattern is useful when you need to add functionality to objects in a flexible and reusable way.
+
+This pattern is vital for enhancing functionality while adhering to the open-closed principle. To gain insights into design patterns and their application in system architecture, consider enrolling in the System Design Course, which covers various patterns and their implications for system design.
+
+Characteristics of the Decorator Pattern
+This pattern promotes flexibility and extensibility in software systems by allowing developers to compose objects with different combinations of functionalities at runtime.
+It follows the open/closed principle, as new decorators can be added without modifying existing code, making it a powerful tool for building modular and customizable software components.
+The Decorator Pattern is commonly used in scenarios where a variety of optional features or behaviors need to be added to objects in a flexible and reusable manner, such as in text formatting, graphical user interfaces, or customization of products like coffee or ice cream.
+Real-World Example of Decorator Design Pattern
+Consider a video streaming platform where users can watch movies and TV shows. Each video content may have additional features or options available, such as subtitles, language preferences, video quality options, and audio enhancements.
+
+
+In this scenario, the base component is the video content itself, while the decorators represent the various additional features that users can enable or customize.
+For example, a user might select the option to enable subtitles, change the language of the audio track, or adjust the video quality settings.
+Each of these options acts as a decorator that enhances the viewing experience without altering the underlying video content.
+By using the Decorator pattern, the streaming platform can dynamically apply these additional features to the video content based on user preferences, providing a customizable viewing experience.
+Use Cases for the Decorator Pattern
+Below are some of the use cases of Decorator Design Pattern:
+
+Extending Functionality: When you have a base component with basic functionality, but you need to add additional features or behaviors to it dynamically without altering its structure. Decorators allow you to add new responsibilities to objects at runtime.
+Multiple Combinations of Features: When you want to provide multiple combinations of features or options to an object. Decorators can be stacked and combined in different ways to create customized variations of objects, providing flexibility to users.
+Legacy Code Integration: When working with legacy code or third-party libraries where modifying the existing codebase is not feasible or desirable, decorators can be used to extend the functionality of existing objects without altering their implementation.
+GUI Components: In graphical user interface (GUI) development, decorators can be used to add additional visual effects, such as borders, shadows, or animations, to GUI components like buttons, panels, or windows.
+Input/Output Streams: Decorators are commonly used in input/output stream classes in languages like Java. They allow you to wrap streams with additional functionality such as buffering, compression, encryption, or logging without modifying the original stream classes.
+Key Components of the Decorator Design Pattern
+Component Interface: This is an abstract class or interface that defines the common interface for both the concrete components and decorators. It specifies the operations that can be performed on the objects.
+Concrete Component: These are the basic objects or classes that implement the Component interface. They are the objects to which we want to add new behavior or responsibilities.
+Decorator: This is an abstract class that also implements the Component interface and has a reference to a Component object. Decorators are responsible for adding new behaviors to the wrapped Component object.
+Concrete Decorator: These are the concrete classes that extend the Decorator class. They add specific behaviors or responsibilities to the Component. Each Concrete Decorator can add one or more behaviors to the Component.
+Example of Decorator Design Pattern
+Below is the problem statement to understand the Decorator Design Pattern:
+
+Suppose we are building a coffee shop application where customers can order different types of coffee. Each coffee can have various optional add-ons such as milk, sugar, whipped cream, etc. We want to implement a system where we can dynamically add these add-ons to a coffee order without modifying the coffee classes themselves.
+
+
+Using the Decorator Pattern allows us to add optional features (add-ons) to coffee orders dynamically without altering the core coffee classes. This promotes code flexibility, scalability, and maintainability as new add-ons can be easily introduced and combined with different types of coffee orders.
