@@ -1,0 +1,128 @@
+Proxy is a structural design pattern that lets you provide a substitute or placeholder for another object. 
+A proxy controls access to the original object, allowing you to perform something 
+either before or after the request gets through to the original object.
+
+Problem
+Why would you want to control access to an object? Here is an example: you have a massive object that consumes a vast amount of 
+system resources. 
+You need it from time to time, but not always.
+
+You could implement lazy initialization: create this object only when it’s actually needed. 
+All of the object’s clients would need to execute some deferred initialization code. 
+Unfortunately, this would probably cause a lot of code duplication.
+In an ideal world, we’d want to put this code directly into our object’s class, 
+but that isn’t always possible. For instance, the class may be part of a closed 3rd-party library.
+
+Solution
+The Proxy pattern suggests that you create a new proxy class with the same interface as an original service object. 
+Then you update your app so that it passes the proxy object to all of the original object’s clients.
+Upon receiving a request from a client, the proxy creates a real service object and delegates all the work to it.
+But what’s the benefit? If you need to execute something either before or after the primary logic of the class, 
+the proxy lets you do this without changing that class. 
+Since the proxy implements the same interface as the original class, it can be passed to any client that expects a real service object.
+
+Real-World Analogy
+A credit card is a proxy for a bank account, which is a proxy for a bundle of cash. 
+Both implement the same interface: they can be used for making a payment. 
+A consumer feels great because there’s no need to carry loads of cash around. 
+A shop owner is also happy since the income from a transaction gets added electronically to the shop’s 
+bank account without the risk of losing the deposit or getting robbed on the way to the bank.
+
+Applicability
+There are dozens of ways to utilize the Proxy pattern. Let’s go over the most popular uses.
+
+ Lazy initialization (virtual proxy). 
+ This is when you have a heavyweight service object that wastes system resources by being always up, 
+ even though you only need it from time to time.
+ Instead of creating the object when the app launches, you can delay the object’s initialization to a time when it’s really needed.
+
+ Access control (protection proxy). 
+ This is when you want only specific clients to be able to use the service object; for instance, 
+ when your objects are crucial parts of an operating system and clients are various launched applications (including malicious ones).
+ The proxy can pass the request to the service object only if the client’s credentials match some criteria.
+
+ Local execution of a remote service (remote proxy). 
+ This is when the service object is located on a remote server.
+ In this case, the proxy passes the client request over the network, handling all of the nasty details of working with the network.
+
+ Logging requests (logging proxy). 
+ This is when you want to keep a history of requests to the service object.
+ The proxy can log each request before passing it to the service.
+
+ Caching request results (caching proxy). 
+ This is when you need to cache results of client requests and manage the life cycle of this cache, especially if results are quite large.
+ The proxy can implement caching for recurring requests that always yield the same results. 
+ The proxy may use the parameters of requests as the cache keys.
+
+ Smart reference. 
+ This is when you need to be able to dismiss a heavyweight object once there are no clients that use it.
+ The proxy can keep track of clients that obtained a reference to the service object or its results. 
+ From time to time, the proxy may go over the clients and check whether they are still active.
+ If the client list gets empty, the proxy might dismiss the service object and free the underlying system resources.
+ The proxy can also track whether the client had modified the service object. 
+ Then the unchanged objects may be reused by other clients.
+
+How to Implement
+If there’s no pre-existing service interface, create one to make proxy and service objects interchangeable. 
+Extracting the interface from the service class isn’t always possible, because you’d need to change all of the service’s clients to use that interface. 
+Plan B is to make the proxy a subclass of the service class, and this way it’ll inherit the interface of the service.
+Create the proxy class. It should have a field for storing a reference to the service. 
+Usually, proxies create and manage the whole life cycle of their services. 
+On rare occasions, a service is passed to the proxy via a constructor by the client.
+Implement the proxy methods according to their purposes. 
+In most cases, after doing some work, the proxy should delegate the work to the service object.
+Consider introducing a creation method that decides whether the client gets a proxy or a real service.
+This can be a simple static method in the proxy class or a full-blown factory method.
+Consider implementing lazy initialization for the service object.
+
+Pros and Cons
+ You can control the service object without clients knowing about it.
+ You can manage the lifecycle of the service object when clients don’t care about it.
+ The proxy works even if the service object isn’t ready or is not available.
+ Open/Closed Principle. You can introduce new proxies without changing the service or clients.
+ The code may become more complicated since you need to introduce a lot of new classes.
+ The response from the service might get delayed.
+
+
+ -----------------------------------------------------------------------------
+
+ The Proxy Design Pattern a structural design pattern is a way to use a placeholder object to 
+ control access to another object. 
+ Instead of interacting directly with the main object, the client talks to the proxy, 
+ which then manages the interaction. 
+ This is useful for things like controlling access, delaying object creation until it’s needed
+ (lazy initialization), logging, or adding security checks.
+
+ What is Proxy Design Pattern?
+The Proxy Design Pattern is a design pattern in which the client and the actual object are connected by a proxy object. The client communicates with the proxy, which manages access to the real object, rather than the real object directly. Before sending the request to the real object, the proxy can take care of additional tasks like caching, security, logging, and lazy loading.
+
+Chaining of Proxies
+Chaining proxies in the Proxy Design Pattern means connecting them in a sequence, where each proxy adds its behavior or checks before passing the request to the next proxy or the real object. It’s like forming a chain of guards, each responsible for a specific task.
+
+
+Components of Proxy Design Pattern
+1. Subject
+The Subject is an interface or an abstract class that defines the common interface shared by the RealSubject and Proxy classes. It declares the methods that the Proxy uses to control access to the RealSubject.
+
+Declares the common interface for both RealSubject and Proxy.
+Usually includes the methods that the client code can invoke on the RealSubject and the Proxy.
+2. RealSubject
+The RealSubject is the actual object that the Proxy represents. It contains the real implementation of the business logic or the resource that the client code wants to access.
+
+It Implements the operations declared by the Subject interface.
+Represents the real resource or object that the Proxy controls access to.
+3. Proxy
+The Proxy acts as a surrogate or placeholder for the RealSubject. It controls access to the real object and may provide additional functionality such as lazy loading, access control, or logging.
+
+Implements the same interface as the RealSubject (Subject).
+Maintains a reference to the RealSubject.
+Controls access to the RealSubject, adding additional logic if necessary.
+How to implement Proxy Design Pattern?
+Below are the simple steps to implement the Proxy Design Pattern:
+
+Create the Real Object Interface: Define an interface or abstract class that represents the operations the real object will provide. Both the real object and proxy will implement this interface.
+Create the Real Object: This class implements the interface and contains the actual logic or operation that the client wants to use.
+Create the Proxy Class: The proxy class also implements the same interface as the real object. It holds a reference to the real object and controls access to it. The proxy can add extra logic like logging, caching, or security checks before calling the real object’s methods.
+Client Uses the Proxy: Instead of creating the real object directly, the client interacts with the proxy. The proxy decides when and how to forward the client’s request to the real object.
+
+
